@@ -15,3 +15,5 @@ namespace LogicaNegocio.Entidades
         public Puntos RepartoPuntos { get; set; }
     }
 }
+
+//Prueba 2 de github
