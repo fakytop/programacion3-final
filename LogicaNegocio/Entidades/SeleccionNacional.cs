@@ -14,7 +14,8 @@ namespace LogicaNegocio.Entidades
         public int Apostadores { get; set; }
         public Grupo GrupoMundial { get; set; }
 
-        
+        //prueba 1 github
+
         //Controlar una seleccion por pais.
     }
 }
