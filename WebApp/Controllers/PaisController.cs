@@ -18,27 +18,21 @@ namespace WebApp.Controllers
         {
             this._cuAlta = cuAlta;
         }
-
-
         public IActionResult CreatePais()
         {
             return View();
         }
-       
         [HttpPost]
-        public IActionResult CreatePais(Pais unPais, string Nombre, string IsoAlfa3, decimal PBI, int Poblacion, string Region)
+        public IActionResult CreatePais(Country unPais, string Nombre, string IsoAlfa3, float PBI, int Poblacion, string Region)
         {
             ViewBag.Mensaje = "";
-
             try
             {
-
                 unPais.Nombre = new NameValue(Nombre);
                 unPais.IsoAlfa3 = new ISOAlfa3Value(IsoAlfa3);
-                unPais.PBI = new PBI(PBI);
+                unPais.PBI = new PositiveFloatValue (PBI);
                 unPais.Poblacion = new PositiveIntegerValue(Poblacion);
                 unPais.Region = new RegionValue(Region);
-
                 _cuAlta.CrearPais(unPais);
                 return View();
 

@@ -10,38 +10,38 @@ namespace LogicaAccesoDatos.EF
     {
         public ObligatorioContext(DbContextOptions<ObligatorioContext> options): base(options) { }
 
-        public DbSet<Pais> Paises { get; set; }
+        public DbSet<Country> Paises { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Pais>().
+            modelBuilder.Entity<Country>().
                 ToTable("Paises")
                 .OwnsOne(p => p.Nombre)
                 .Property(n => n.Value)
                 .HasColumnName("Nombre");
 
-            modelBuilder.Entity<Pais>().
+            modelBuilder.Entity<Country>().
                 ToTable("ISOAlfa3")
                 .OwnsOne(p => p.IsoAlfa3)
                 .Property(i => i.Value)
                 .HasColumnName("ISOAlfa3");
 
-            modelBuilder.Entity<Pais>().
+            modelBuilder.Entity<Country>().
                 ToTable("Paises")
                 .OwnsOne(p => p.PBI)
                 .Property(i => i.Value)
                 .HasColumnName("PBI")
                 .HasColumnType("decimal(18,4)");
 
-            modelBuilder.Entity<Pais>().
+            modelBuilder.Entity<Country>().
                 ToTable("Paises")
                 .OwnsOne(p => p.Poblacion)
                 .Property(p => p.Value)
                 .HasColumnName("Poblacion");
 
-            modelBuilder.Entity<Pais>().
+            modelBuilder.Entity<Country>().
                 ToTable("Paises")
                 .OwnsOne(p => p.Region)
                 .Property(r => r.Value)

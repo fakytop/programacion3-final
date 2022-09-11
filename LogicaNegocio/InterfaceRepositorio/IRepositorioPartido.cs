@@ -6,7 +6,7 @@ using LogicaNegocio.Entidades;
 
 namespace LogicaNegocio.InterfaceRepositorio
 {
-    public interface IRepositorioPartido: IRepositorio<Partido>
+    public interface IRepositorioPartido: IRepositorio<Match>
     {
     }
 }

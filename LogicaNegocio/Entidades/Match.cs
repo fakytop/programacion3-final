@@ -6,7 +6,7 @@ using LogicaNegocio.InterfacesDominio;
 
 namespace LogicaNegocio.Entidades
 {
-    public class Partido: IEntity
+    public class Match: IEntity
     {
         public int Id { get; set; }
         public SeleccionNacional Local { get; set; }

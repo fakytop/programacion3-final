@@ -8,6 +8,6 @@ namespace LogicaAplicacion.CasosUso.IPaises
 {
     public interface IAlta
     {
-        public void CrearPais(Pais obj);
+        public void CrearPais(Country obj);
     }
 }

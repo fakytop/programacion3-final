@@ -8,10 +8,10 @@ namespace LogicaAccesoDatos.Memoria
 {
     public class RepositorioPartido : IRepositorioPartido
     {
-        private static List<Partido> partidos = new List<Partido>();
+        private static List<Match> partidos = new List<Match>();
         private static int ultId = 1;
 
-        public void Add(Partido obj)
+        public void Add(Match obj)
         {
             throw new NotImplementedException();
         }
@@ -21,12 +21,12 @@ namespace LogicaAccesoDatos.Memoria
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Partido> FindAll()
+        public IEnumerable<Match> FindAll()
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Partido obj)
+        public void Update(Match obj)
         {
             throw new NotImplementedException();
         }

@@ -7,12 +7,12 @@ using LogicaNegocio.Excepciones;
 
 namespace LogicaNegocio.Entidades
 {
-    public class Pais: IEntity
+    public class Country: IEntity
     {
         public int Id { get; set; }
         public NameValue Nombre { get; set; } // Solo alfabetico y espacios embebidos - es unico
         public ISOAlfa3Value IsoAlfa3 { get; set; } 
-        public PBI PBI { get; set; } 
+        public PositiveFloatValue PBI { get; set; } 
         public PositiveIntegerValue Poblacion { get; set; }
         //public ImagenBandera ImgBandera { get; set; } 
         public RegionValue Region { get; set; }

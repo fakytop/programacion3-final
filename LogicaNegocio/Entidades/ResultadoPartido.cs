@@ -9,7 +9,7 @@ namespace LogicaNegocio.Entidades
     public class ResultadoPartido: IEntity
     {
         public int Id { get; set; }
-        public Partido Partido { get; set; }
+        public Match Partido { get; set; }
         public Tarjetas Tarjetas { get; set; }
     }
 }

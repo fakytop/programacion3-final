@@ -9,7 +9,7 @@ namespace LogicaNegocio.Entidades
     public class SeleccionNacional: IEntity
     {
         public int Id { get; set; }
-        public Pais Pais { get; set; }
+        public Country Pais { get; set; }
         public Contacto Contacto { get; set; }
         public int Apostadores { get; set; }
 

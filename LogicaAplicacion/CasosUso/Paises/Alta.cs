@@ -16,7 +16,7 @@ namespace LogicaAplicacion.CasosUso.Paises
             _repo = repo;
         }
 
-        public void CrearPais(Pais obj)
+        public void CrearPais(Country obj)
         {
             _repo.Add(obj);
         }

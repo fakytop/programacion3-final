@@ -9,10 +9,10 @@ namespace LogicaAccesoDatos.Memoria
 {
     public class RepositorioPais : IRepositorioPais
     {
-        private static List<Pais> paises = new List<Pais>();
+        private static List<Country> paises = new List<Country>();
         private static int ultId = 1;
 
-        public void Add(Pais obj)
+        public void Add(Country obj)
         {
             if(paises.Contains(obj))
             {
@@ -29,12 +29,12 @@ namespace LogicaAccesoDatos.Memoria
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Pais> FindAll()
+        public IEnumerable<Country> FindAll()
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Pais obj)
+        public void Update(Country obj)
         {
             throw new NotImplementedException();
         }
