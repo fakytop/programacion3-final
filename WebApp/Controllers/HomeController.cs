@@ -23,6 +23,11 @@ namespace WebApp.Controllers
             return View();
         }
 
+        public IActionResult Crud ()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
