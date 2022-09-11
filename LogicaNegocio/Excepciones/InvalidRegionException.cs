@@ -4,9 +4,9 @@ using System.Text;
 
 namespace LogicaNegocio.Excepciones
 {
-    public class DomainException : Exception
+    public class InvalidRegionException : DomainException
     {
-        public DomainException(string message) : base(message)
+        public InvalidRegionException(string message) : base(message)
         {
 
         }

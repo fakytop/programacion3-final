@@ -11,7 +11,6 @@ namespace LogicaNegocio.Entidades
         public int Id { get; set; }
         public SeleccionNacional Local { get; set; }
         public SeleccionNacional Visita { get; set; }
-        public FechaPartido FechaPartido { get; set; }
 
         //Verificar que no jueguen contra si mismo, no puede haber otro partido en esa fecha y horario. 
     }

@@ -12,7 +12,6 @@ namespace LogicaNegocio.Entidades
         public Pais Pais { get; set; }
         public Contacto Contacto { get; set; }
         public int Apostadores { get; set; }
-        public Grupo GrupoMundial { get; set; }
 
         //prueba 1 github
 

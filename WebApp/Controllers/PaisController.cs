@@ -33,11 +33,11 @@ namespace WebApp.Controllers
             try
             {
 
-                unPais.Nombre = new Nombre(Nombre);
-                unPais.IsoAlfa3 = new ISOAlfa3(IsoAlfa3);
+                unPais.Nombre = new NameValue(Nombre);
+                unPais.IsoAlfa3 = new ISOAlfa3Value(IsoAlfa3);
                 unPais.PBI = new PBI(PBI);
-                unPais.Poblacion = new Poblacion(Poblacion);
-                unPais.Region = new Region(Region);
+                unPais.Poblacion = new PositiveIntegerValue(Poblacion);
+                unPais.Region = new RegionValue(Region);
 
                 _cuAlta.CrearPais(unPais);
                 return View();

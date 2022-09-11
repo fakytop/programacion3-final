@@ -4,9 +4,9 @@ using System.Text;
 
 namespace LogicaNegocio.Excepciones
 {
-    public class DomainException : Exception
+    class InvalidISOAlphaException : DomainException
     {
-        public DomainException(string message) : base(message)
+        public InvalidISOAlphaException(string message) : base(message)
         {
 
         }

@@ -6,7 +6,7 @@ namespace LogicaNegocio.VO
 {
     public class Contacto
     {
-        private Nombre _nombre;
+        private NameValue _nombre;
         private string email;
         private string telefono;
 
