@@ -10,7 +10,7 @@ namespace LogicaNegocio.Entidades
     {
         public int Id { get; set; }
         public Country Pais { get; set; }
-        public Contacto Contacto { get; set; }
+        public EmailValue Contacto { get; set; }
         public int Apostadores { get; set; }
 
         //prueba 1 github
