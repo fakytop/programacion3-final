@@ -6,8 +6,8 @@ using LogicaNegocio.Entidades;
 
 namespace LogicaAplicacion.CasosUso.IPaises
 {
-    public interface IAlta
+    public interface ICreate
     {
-        public void CrearPais(Country obj);
+        public void CreateCountry(Country obj);
     }
 }
