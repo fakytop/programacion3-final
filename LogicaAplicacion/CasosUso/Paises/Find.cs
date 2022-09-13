@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using LogicaAplicacion.CasosUso.IPaises;
-using LogicaNegocio.InterfaceRepositorio;
+using LogicaAccesoDatos.InterfaceRepositorio;
 using LogicaNegocio.Entidades;
 
 namespace LogicaAplicacion.CasosUso.Paises

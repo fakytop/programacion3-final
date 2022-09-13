@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using LogicaAplicacion.CasosUso.IPaises;
 using LogicaNegocio.Entidades;
-using LogicaNegocio.InterfaceRepositorio;
+using LogicaAccesoDatos.InterfaceRepositorio;
 
 namespace LogicaAplicacion.CasosUso.Paises
 {

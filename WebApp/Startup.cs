@@ -1,5 +1,3 @@
-using LogicaAccesoDatos.EF;
-using LogicaNegocio.InterfaceRepositorio;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,9 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
+using LogicaAccesoDatos.EF;
+using LogicaAccesoDatos.InterfaceRepositorio;
 using LogicaAplicacion.CasosUso.Paises;
 using LogicaAplicacion.CasosUso.IPaises;
-using Microsoft.EntityFrameworkCore;
 
 namespace WebApp
 {

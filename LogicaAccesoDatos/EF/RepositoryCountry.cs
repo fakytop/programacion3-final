@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using LogicaNegocio.Entidades;
-using LogicaNegocio.InterfaceRepositorio;
+using LogicaAccesoDatos.InterfaceRepositorio;
 
 namespace LogicaAccesoDatos.EF
 {

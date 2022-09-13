@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using LogicaNegocio.InterfaceRepositorio;
+using LogicaAccesoDatos.InterfaceRepositorio;
 using LogicaNegocio.Entidades;
 using LogicaNegocio.Excepciones;
 
