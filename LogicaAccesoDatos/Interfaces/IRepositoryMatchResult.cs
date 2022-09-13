@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using LogicaNegocio.Entidades;
 using System.Text;
 
-namespace LogicaAccesoDatos.InterfaceRepositorio
+namespace LogicaAccesoDatos.Interfaces
 {
     public interface IRepositoryMatchResult: IRepository<MatchResult>
     {

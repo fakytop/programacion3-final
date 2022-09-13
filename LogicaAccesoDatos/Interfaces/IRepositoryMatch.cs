@@ -4,7 +4,7 @@ using System.Text;
 using LogicaNegocio.Entidades;
 
 
-namespace LogicaAccesoDatos.InterfaceRepositorio
+namespace LogicaAccesoDatos.Interfaces
 {
     public interface IRepositoryMatch: IRepository<Match>
     {

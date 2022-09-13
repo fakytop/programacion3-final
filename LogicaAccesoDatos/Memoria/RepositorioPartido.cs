@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using LogicaAccesoDatos.InterfaceRepositorio;
+using LogicaAccesoDatos.Interfaces;
 using LogicaNegocio.Entidades;
 
 namespace LogicaAccesoDatos.Memoria

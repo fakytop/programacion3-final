@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LogicaAccesoDatos.InterfaceRepositorio
+namespace LogicaAccesoDatos.Interfaces
 {
     public interface IRepository<T>
     {
