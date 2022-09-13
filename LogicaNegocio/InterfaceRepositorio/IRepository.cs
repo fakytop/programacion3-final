@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LogicaNegocio.InterfaceRepositorio
 {
-    public interface IRepositorio<T>
+    public interface IRepository<T>
     {
         public void Add(T obj);
         public IEnumerable<T> FindAll();

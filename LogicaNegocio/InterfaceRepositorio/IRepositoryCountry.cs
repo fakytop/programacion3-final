@@ -5,7 +5,7 @@ using LogicaNegocio.Entidades;
 
 namespace LogicaNegocio.InterfaceRepositorio
 {
-    public interface IRepositorioPais: IRepositorio<Country>
+    public interface IRepositoryCountry: IRepository<Country>
     {
     }
 }

@@ -6,12 +6,12 @@ using LogicaNegocio.InterfacesDominio;
 
 namespace LogicaNegocio.Entidades
 {
-    public class SeleccionNacional: IEntity
+    public class NationalTeam: IEntity
     {
         public int Id { get; set; }
-        public Country Pais { get; set; }
-        public Contacto Contacto { get; set; }
-        public int Apostadores { get; set; }
+        public Country Country { get; set; }
+        public Contact Contact { get; set; }
+        public PositiveIntegerValue Punters { get; set; }
 
         //prueba 1 github
 

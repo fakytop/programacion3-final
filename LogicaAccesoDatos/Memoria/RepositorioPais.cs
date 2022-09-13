@@ -7,7 +7,7 @@ using LogicaNegocio.Excepciones;
 
 namespace LogicaAccesoDatos.Memoria
 {
-    public class RepositorioPais : IRepositorioPais
+    public class RepositorioPais : IRepositoryCountry
     {
         private static List<Country> paises = new List<Country>();
         private static int ultId = 1;

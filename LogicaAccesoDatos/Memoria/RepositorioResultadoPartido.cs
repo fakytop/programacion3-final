@@ -6,12 +6,12 @@ using LogicaNegocio.Entidades;
 
 namespace LogicaAccesoDatos.Memoria
 {
-    public class RepositorioResultadoPartido : IRepositorioResultadoPartido
+    public class RepositorioResultadoPartido : IRepositoryMatchResult
     {
-        private static List<ResultadoPartido> resultados = new List<ResultadoPartido>();
+        private static List<MatchResult> resultados = new List<MatchResult>();
         private static int ultId = 1;
 
-        public void Add(ResultadoPartido obj)
+        public void Add(MatchResult obj)
         {
             throw new NotImplementedException();
         }
@@ -21,12 +21,12 @@ namespace LogicaAccesoDatos.Memoria
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ResultadoPartido> FindAll()
+        public IEnumerable<MatchResult> FindAll()
         {
             throw new NotImplementedException();
         }
 
-        public void Update(ResultadoPartido obj)
+        public void Update(MatchResult obj)
         {
             throw new NotImplementedException();
         }

@@ -4,10 +4,10 @@ using System.Text;
 
 namespace LogicaNegocio.VO
 {
-    public class Contacto
+    public class Contact
     {
-        private NameValue _nombre;
-        private string email;
+        private NameValue name;
+        private EmailValue email;
         private string telefono;
 
         //email sea válido según las reglas habituales

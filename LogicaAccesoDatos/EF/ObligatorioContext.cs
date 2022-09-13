@@ -18,7 +18,7 @@ namespace LogicaAccesoDatos.EF
 
             modelBuilder.Entity<Country>().
                 ToTable("Paises")
-                .OwnsOne(p => p.Nombre)
+                .OwnsOne(p => p.Name)
                 .Property(n => n.Value)
                 .HasColumnName("Nombre");
 
@@ -37,7 +37,7 @@ namespace LogicaAccesoDatos.EF
 
             modelBuilder.Entity<Country>().
                 ToTable("Paises")
-                .OwnsOne(p => p.Poblacion)
+                .OwnsOne(p => p.Population)
                 .Property(p => p.Value)
                 .HasColumnName("Poblacion");
 

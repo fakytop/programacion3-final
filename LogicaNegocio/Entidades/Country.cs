@@ -10,10 +10,10 @@ namespace LogicaNegocio.Entidades
     public class Country: IEntity
     {
         public int Id { get; set; }
-        public NameValue Nombre { get; set; } // Solo alfabetico y espacios embebidos - es unico
+        public NameValue Name { get; set; } // Solo alfabetico y espacios embebidos - es unico
         public ISOAlfa3Value IsoAlfa3 { get; set; } 
         public PositiveFloatValue PBI { get; set; } 
-        public PositiveIntegerValue Poblacion { get; set; }
+        public PositiveIntegerValue Population { get; set; }
         //public ImagenBandera ImgBandera { get; set; } 
         public RegionValue Region { get; set; }
         
@@ -26,7 +26,7 @@ namespace LogicaNegocio.Entidades
 
         public void Validar()
         {
-            string nombre = Nombre.Value.ToUpper();
+            string nombre = Name.Value.ToUpper();
             string alfa3 = IsoAlfa3.Value.ToUpper();
 
             char chNombre = nombre[0];

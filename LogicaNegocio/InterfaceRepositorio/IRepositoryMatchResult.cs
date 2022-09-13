@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LogicaNegocio.InterfaceRepositorio
 {
-    public interface IRepositorioResultadoPartido: IRepositorio<ResultadoPartido>
+    public interface IRepositoryMatchResult: IRepository<MatchResult>
     {
     }
 }

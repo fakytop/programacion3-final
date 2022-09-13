@@ -32,8 +32,8 @@ namespace WebApp
             services.AddDbContext<ObligatorioContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("obligatorio")));
             services.AddControllersWithViews();
-            services.AddScoped<IRepositorioPais, RepositorioPais>();
-            services.AddScoped<IAlta, Alta>();
+            services.AddScoped<IRepositoryCountry, RepositorioPais>();
+            services.AddScoped<ICreate, Create>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

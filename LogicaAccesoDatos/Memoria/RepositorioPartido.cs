@@ -6,7 +6,7 @@ using LogicaNegocio.Entidades;
 
 namespace LogicaAccesoDatos.Memoria
 {
-    public class RepositorioPartido : IRepositorioPartido
+    public class RepositorioPartido : IRepositoryMatch
     {
         private static List<Match> partidos = new List<Match>();
         private static int ultId = 1;

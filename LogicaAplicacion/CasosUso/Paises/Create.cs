@@ -7,16 +7,16 @@ using LogicaNegocio.InterfaceRepositorio;
 
 namespace LogicaAplicacion.CasosUso.Paises
 {
-    public class Alta : IAlta
+    public class Create : ICreate
     {
-        private IRepositorioPais _repo;
+        private IRepositoryCountry _repo;
 
-        public Alta(IRepositorioPais repo)
+        public Create(IRepositoryCountry repo)
         {
             _repo = repo;
         }
 
-        public void CrearPais(Country obj)
+        public void CreateCountry(Country obj)
         {
             _repo.Add(obj);
         }
