@@ -15,7 +15,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Id)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name.Value)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsoAlfa3.Value)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Region.Value)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -23,6 +31,15 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name.Value)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsoAlfa3.Value)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Region.Value)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

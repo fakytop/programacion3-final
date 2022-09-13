@@ -13,9 +13,11 @@ namespace LogicaAccesoDatos.EF
         {
             _db = db;
         }
-        public void Add(Country obj)
+        public void Add(Country country)
         {
-            throw new NotImplementedException();
+            country.validate();
+            _db.Add(country);
+            _db.SaveChanges();
         }
 
         public IEnumerable<Country> All()
