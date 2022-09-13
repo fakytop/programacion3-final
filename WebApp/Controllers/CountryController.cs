@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LogicaAplicacion.CasosUso.IPaises;
+using LogicaAplicacion.UseCases.Countries;
 using LogicaNegocio.Entidades;
 using LogicaNegocio.VO;
 using LogicaNegocio.Excepciones;
@@ -12,17 +12,15 @@ namespace WebApp.Controllers
 {
     public class CountryController : Controller
     {
-        private ICreate _ucCreate;
-        private IFind _UCAll;
+        private IUC_Country _use_cases;
 
-        public CountryController(ICreate ucCreate, IFind ucAll)
+        public CountryController(IUC_Country use_cases)
         {
-            _ucCreate = ucCreate;
-            _UCAll = ucAll;
+            _use_cases = use_cases;
         }
         public IActionResult Index ()
         {
-            return View(_UCAll.All());
+            return View(_use_cases.All());
         }
         public IActionResult Create()
         {
@@ -40,7 +38,7 @@ namespace WebApp.Controllers
                 country.GDP = new PositiveFloatValue (gdp);
                 country.Population = new PositiveIntegerValue(population);
                 country.Region = new RegionValue(region);
-                _ucCreate.CreateCountry(country);
+                _use_cases.Create(country);
                 return View();
 
             }

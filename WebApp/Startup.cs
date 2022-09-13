@@ -12,8 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 using LogicaAccesoDatos.EF;
 using LogicaAccesoDatos.InterfaceRepositorio;
-using LogicaAplicacion.CasosUso.Paises;
-using LogicaAplicacion.CasosUso.IPaises;
+using LogicaAplicacion.UseCases.Countries;
 
 namespace WebApp
 {
@@ -33,8 +32,7 @@ namespace WebApp
                 options.UseSqlServer(Configuration.GetConnectionString("production")));
             services.AddControllersWithViews();
             services.AddScoped<IRepositoryCountry, RepositoryCountry>();
-            services.AddScoped<ICreate, Create>();
-            services.AddScoped<IFind, Find>();
+            services.AddScoped<IUC_Country, UC_Country>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
