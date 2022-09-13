@@ -8,7 +8,15 @@ namespace LogicaNegocio.VO
     {
         private NameValue name;
         private EmailValue email;
-        private string telefono;
+        private PhoneNumber phone;
+
+        public Contact(NameValue pName, EmailValue pEmail, PhoneNumber pPhone)
+        {
+            this.name = pName;
+            this.email = pEmail;
+            this.phone = pPhone;
+        }
+
 
         //email sea válido según las reglas habituales
         //teléfono tenga por lo menos 7 caracteres numéricos.

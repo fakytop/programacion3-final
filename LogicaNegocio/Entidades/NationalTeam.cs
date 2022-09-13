@@ -13,6 +13,25 @@ namespace LogicaNegocio.Entidades
         public Contact Contact { get; set; }
         public PositiveIntegerValue Punters { get; set; }
 
+        public NationalTeam()
+        {
+
+        }
+
+        public NationalTeam(Country pCountry, Contact pContact, PositiveIntegerValue pPunters)
+        {
+            this.Country = pCountry;
+            this.Contact = pContact;
+            this.Punters = pPunters;
+        }
+
+
+        public void Validate()
+        {
+            //TODO: Validar que no haya otra selección con el mismo país al ingresarlo. 
+        }
+
+
         //prueba 1 github
 
         //Controlar una seleccion por pais.
