@@ -17,34 +17,34 @@ namespace LogicaAccesoDatos.EF
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Country>().
-                ToTable("Paises")
+                ToTable("Countries")
                 .OwnsOne(p => p.Name)
-                .Property(n => n.Value)
-                .HasColumnName("Nombre");
+                .Property(p => p.Value)
+                .HasColumnName("Name");
 
             modelBuilder.Entity<Country>().
                 ToTable("ISOAlfa3")
                 .OwnsOne(p => p.IsoAlfa3)
-                .Property(i => i.Value)
+                .Property(p => p.Value)
                 .HasColumnName("ISOAlfa3");
 
             modelBuilder.Entity<Country>().
-                ToTable("Paises")
+                ToTable("Countries")
                 .OwnsOne(p => p.GDP)
-                .Property(i => i.Value)
-                .HasColumnName("PBI")
+                .Property(p => p.Value)
+                .HasColumnName("GDP")
                 .HasColumnType("decimal(18,4)");
 
             modelBuilder.Entity<Country>().
-                ToTable("Paises")
+                ToTable("Countries")
                 .OwnsOne(p => p.Population)
                 .Property(p => p.Value)
-                .HasColumnName("Poblacion");
+                .HasColumnName("Population");
 
             modelBuilder.Entity<Country>().
-                ToTable("Paises")
+                ToTable("Countries")
                 .OwnsOne(p => p.Region)
-                .Property(r => r.Value)
+                .Property(p => p.Value)
                 .HasColumnName("Region");
         }
     }

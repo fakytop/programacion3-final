@@ -7,12 +7,17 @@ using LogicaNegocio.Entidades;
 
 namespace LogicaAplicacion.CasosUso.Paises
 {
-    public class List : IList
+    public class Find : IPaises.IFind
     {
         private IRepositoryCountry _repository;
-        public IEnumerable<Country> FindAll ()
+
+        public Find (IRepositoryCountry repository)
         {
-            return _repository.FindAll();
+            _repository = repository;
+        }
+        public IEnumerable<Country> All ()
+        {
+            return _repository.All();
         }
     }
 }

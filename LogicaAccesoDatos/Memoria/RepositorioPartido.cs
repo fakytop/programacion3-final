@@ -21,7 +21,7 @@ namespace LogicaAccesoDatos.Memoria
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Match> FindAll()
+        public IEnumerable<Match> All()
         {
             throw new NotImplementedException();
         }

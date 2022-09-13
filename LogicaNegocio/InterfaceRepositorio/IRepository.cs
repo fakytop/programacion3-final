@@ -7,7 +7,7 @@ namespace LogicaNegocio.InterfaceRepositorio
     public interface IRepository<T>
     {
         public void Add(T obj);
-        public IEnumerable<T> FindAll();
+        public IEnumerable<T> All();
         public void Delete(int id);
         public void Update(T obj);
     }

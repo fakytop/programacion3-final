@@ -31,8 +31,7 @@ namespace LogicaNegocio.Entidades
             Pais unP = obj as Pais;
             return unP != null && unP.Nombre.Value() == Nombre.Value();
         }*/
-
-        public void Validar()
+        public void validate()
         {
             string nombre = Name.Value.ToUpper();
             string alfa3 = IsoAlfa3.Value.ToUpper();

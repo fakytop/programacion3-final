@@ -9,16 +9,16 @@ namespace LogicaAplicacion.CasosUso.Paises
 {
     public class Create : ICreate
     {
-        private IRepositoryCountry _repo;
+        private IRepositoryCountry _repository;
 
-        public Create(IRepositoryCountry repo)
+        public Create(IRepositoryCountry repository)
         {
-            _repo = repo;
+            _repository = repository;
         }
 
         public void CreateCountry(Country obj)
         {
-            _repo.Add(obj);
+            _repository.Add(obj);
         }
     }
 }

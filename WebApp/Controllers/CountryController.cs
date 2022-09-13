@@ -13,7 +13,7 @@ namespace WebApp.Controllers
     public class CountryController : Controller
     {
         private ICreate _ucCreate;
-        private IList _ucList;
+        private IFind _ucList;
 
         public CountryController(ICreate ucCreate)
         {

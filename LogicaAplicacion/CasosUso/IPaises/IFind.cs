@@ -5,8 +5,8 @@ using LogicaNegocio.Entidades;
 
 namespace LogicaAplicacion.CasosUso.IPaises
 {
-    public interface IList
+    public interface IFind
     {
-        public IEnumerable<Country> FindAll();
+        public IEnumerable<Country> All();
     }
 }
