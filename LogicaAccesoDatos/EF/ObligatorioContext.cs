@@ -10,7 +10,7 @@ namespace LogicaAccesoDatos.EF
     {
         public ObligatorioContext(DbContextOptions<ObligatorioContext> options): base(options) { }
 
-        public DbSet<Country> Paises { get; set; }
+        public DbSet<Country> Countries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,7 @@ namespace LogicaAccesoDatos.EF
 
             modelBuilder.Entity<Country>().
                 ToTable("Paises")
-                .OwnsOne(p => p.PBI)
+                .OwnsOne(p => p.GDP)
                 .Property(i => i.Value)
                 .HasColumnName("PBI")
                 .HasColumnType("decimal(18,4)");

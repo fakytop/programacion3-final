@@ -13,12 +13,12 @@ namespace WebApp.Controllers
     public class CountryController : Controller
     {
         private ICreate _ucCreate;
+        private IList _ucList;
 
         public CountryController(ICreate ucCreate)
         {
             this._ucCreate = ucCreate;
         }
-
         public IActionResult CreateCountry()
         {
             return View();
@@ -32,7 +32,7 @@ namespace WebApp.Controllers
             {
                 letC.Name = new NameValue(Nombre);
                 letC.IsoAlfa3 = new ISOAlfa3Value(IsoAlfa3);
-                letC.PBI = new PositiveFloatValue (PBI);
+                letC.GDP = new PositiveFloatValue (PBI);
                 letC.Population = new PositiveIntegerValue(Poblacion);
                 letC.Region = new RegionValue(Region);
                 _ucCreate.CreateCountry(letC);

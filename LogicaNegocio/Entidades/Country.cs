@@ -10,9 +10,9 @@ namespace LogicaNegocio.Entidades
     public class Country: IEntity
     {
         public int Id { get; set; }
-        public NameValue Name { get; set; } // Solo alfabetico y espacios embebidos - es unico
+        public NameValue Name { get; set; }
         public ISOAlfa3Value IsoAlfa3 { get; set; } 
-        public PositiveFloatValue PBI { get; set; } 
+        public PositiveFloatValue GDP { get; set; } 
         public PositiveIntegerValue Population { get; set; }
         //public ImagenBandera ImgBandera { get; set; } 
         public RegionValue Region { get; set; }
