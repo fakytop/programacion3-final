@@ -13,11 +13,16 @@ namespace WebApp.Controllers
     public class CountryController : Controller
     {
         private ICreate _ucCreate;
-        private IFind _ucList;
+        private IFind _UCAll;
 
-        public CountryController(ICreate ucCreate)
+        public CountryController(ICreate ucCreate, IFind ucAll)
         {
-            this._ucCreate = ucCreate;
+            _ucCreate = ucCreate;
+            _UCAll = ucAll;
+        }
+        public IActionResult Index ()
+        {
+            return View(_UCAll.All());
         }
         public IActionResult CreateCountry()
         {

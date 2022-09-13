@@ -33,6 +33,7 @@ namespace WebApp
             services.AddControllersWithViews();
             services.AddScoped<IRepositoryCountry, RepositoryCountry>();
             services.AddScoped<ICreate, Create>();
+            services.AddScoped<IFind, Find>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
