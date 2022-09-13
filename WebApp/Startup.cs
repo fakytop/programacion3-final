@@ -30,7 +30,7 @@ namespace WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ObligatorioContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("obligatorio")));
+                options.UseSqlServer(Configuration.GetConnectionString("production")));
             services.AddControllersWithViews();
             services.AddScoped<IRepositoryCountry, RepositorioPais>();
             services.AddScoped<ICreate, Create>();
