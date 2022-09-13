@@ -1,4 +1,4 @@
-using LogicaAccesoDatos.Memoria;
+using LogicaAccesoDatos.EF;
 using LogicaNegocio.InterfaceRepositorio;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +12,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using LogicaAplicacion.CasosUso.Paises;
 using LogicaAplicacion.CasosUso.IPaises;
-using LogicaAccesoDatos.EF;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebApp
@@ -32,7 +31,7 @@ namespace WebApp
             services.AddDbContext<ObligatorioContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("production")));
             services.AddControllersWithViews();
-            services.AddScoped<IRepositoryCountry, RepositorioPais>();
+            services.AddScoped<IRepositoryCountry, RepositoryCountry>();
             services.AddScoped<ICreate, Create>();
         }
 
