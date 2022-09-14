@@ -16,15 +16,19 @@ namespace LogicaNegocio.VO
         }
         public void validate ()
         {
+            if (String.IsNullOrEmpty (Value))
+            {
+                throw new InvalidISOAlphaException("Invalid ISOAlpha code: value cannot be null nor empty");
+            }
             if (Value.Length != 3)
             {
-                throw new InvalidISOAlphaException("Invalid ISOAlpha code: ISOAlpha codes must be three characters long.");
+                throw new InvalidISOAlphaException("Invalid ISOAlpha code: value must be three characters long.");
             }
             foreach (var c in Value)
             {
                 if (!Char.IsLetter(c))
                 {
-                    throw new InvalidISOAlphaException("Invalid ISOAlpha code: ISOAlpha codes must only contain three letters.");
+                    throw new InvalidISOAlphaException("Invalid ISOAlpha code: value must only contain three letters.");
                 }
             }
         }

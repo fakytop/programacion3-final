@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LogicaAplicacion.CasosUso.IPaises;
+using LogicaAplicacion.UseCases.Countries;
 using LogicaNegocio.Entidades;
 using LogicaNegocio.VO;
 using LogicaNegocio.Excepciones;
@@ -12,39 +12,42 @@ namespace WebApp.Controllers
 {
     public class CountryController : Controller
     {
-        private ICreate _ucCreate;
+        private IUC_Country _use_cases;
 
-        public CountryController(ICreate ucCreate)
+        public CountryController(IUC_Country use_cases)
         {
-            this._ucCreate = ucCreate;
+            _use_cases = use_cases;
         }
-
-        public IActionResult CreateCountry()
+        public IActionResult Index ()
+        {
+            return View(_use_cases.All());
+        }
+        public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult CreateCountry(Country letC, string Nombre, string IsoAlfa3, float PBI, int Poblacion, string Region)
+        public IActionResult Create(Country country, string name, string isoalpha, float gdp, int population, string region)
         {
-            ViewBag.Mensaje = "";
+            ViewBag.Message = "";
             try
             {
-                letC.Name = new NameValue(Nombre);
-                letC.IsoAlfa3 = new ISOAlfa3Value(IsoAlfa3);
-                letC.PBI = new PositiveFloatValue (PBI);
-                letC.Population = new PositiveIntegerValue(Poblacion);
-                letC.Region = new RegionValue(Region);
-                _ucCreate.CreateCountry(letC);
+                country.Name = new NameValue(name);
+                country.IsoAlfa3 = new ISOAlfa3Value(isoalpha);
+                country.GDP = new PositiveFloatValue (gdp);
+                country.Population = new PositiveIntegerValue(population);
+                country.Region = new RegionValue(region);
+                _use_cases.Create(country);
                 return View();
 
             }
             catch (DomainException e)
             {
-                ViewBag.Mensaje = e.Message;
+                ViewBag.Message = e.Message;
             }
 
-            return View(letC);
+            return View(country);
         }
 
     }

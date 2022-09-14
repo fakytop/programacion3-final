@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using LogicaNegocio.InterfaceRepositorio;
+using LogicaAccesoDatos.Interfaces;
 using LogicaNegocio.Entidades;
 
 namespace LogicaAccesoDatos.Memoria
@@ -21,7 +21,7 @@ namespace LogicaAccesoDatos.Memoria
             throw new NotImplementedException();
         }
 
-        public IEnumerable<MatchResult> FindAll()
+        public IEnumerable<MatchResult> All()
         {
             throw new NotImplementedException();
         }

@@ -18,23 +18,26 @@ namespace LogicaAccesoDatos.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("LogicaNegocio.Entidades.Pais", b =>
+            modelBuilder.Entity("LogicaNegocio.Entidades.Country", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Paises");
+                    b.ToTable("Countries");
                 });
 
-            modelBuilder.Entity("LogicaNegocio.Entidades.Pais", b =>
+            modelBuilder.Entity("LogicaNegocio.Entidades.Country", b =>
                 {
-                    b.OwnsOne("LogicaNegocio.VO.ISOAlfa3", "IsoAlfa3", b1 =>
+                    b.OwnsOne("LogicaNegocio.VO.ISOAlfa3Value", "IsoAlfa3", b1 =>
                         {
-                            b1.Property<int>("PaisId")
+                            b1.Property<int>("CountryId")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -43,74 +46,74 @@ namespace LogicaAccesoDatos.Migrations
                                 .HasColumnName("ISOAlfa3")
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.HasKey("PaisId");
+                            b1.HasKey("CountryId");
 
-                            b1.ToTable("Paises");
+                            b1.ToTable("Countries");
 
                             b1.WithOwner()
-                                .HasForeignKey("PaisId");
+                                .HasForeignKey("CountryId");
                         });
 
-                    b.OwnsOne("LogicaNegocio.VO.Nombre", "Nombre", b1 =>
+                    b.OwnsOne("LogicaNegocio.VO.NameValue", "Name", b1 =>
                         {
-                            b1.Property<int>("PaisId")
+                            b1.Property<int>("CountryId")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                             b1.Property<string>("Value")
-                                .HasColumnName("Nombre")
+                                .HasColumnName("Name")
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.HasKey("PaisId");
+                            b1.HasKey("CountryId");
 
-                            b1.ToTable("Paises");
+                            b1.ToTable("Countries");
 
                             b1.WithOwner()
-                                .HasForeignKey("PaisId");
+                                .HasForeignKey("CountryId");
                         });
 
-                    b.OwnsOne("LogicaNegocio.VO.PBI", "PBI", b1 =>
+                    b.OwnsOne("LogicaNegocio.VO.PositiveFloatValue", "GDP", b1 =>
                         {
-                            b1.Property<int>("PaisId")
+                            b1.Property<int>("CountryId")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                             b1.Property<decimal>("Value")
-                                .HasColumnName("PBI")
+                                .HasColumnName("GDP")
                                 .HasColumnType("decimal(18,4)");
 
-                            b1.HasKey("PaisId");
+                            b1.HasKey("CountryId");
 
-                            b1.ToTable("Paises");
+                            b1.ToTable("Countries");
 
                             b1.WithOwner()
-                                .HasForeignKey("PaisId");
+                                .HasForeignKey("CountryId");
                         });
 
-                    b.OwnsOne("LogicaNegocio.VO.Poblacion", "Poblacion", b1 =>
+                    b.OwnsOne("LogicaNegocio.VO.PositiveIntegerValue", "Population", b1 =>
                         {
-                            b1.Property<int>("PaisId")
+                            b1.Property<int>("CountryId")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                             b1.Property<int>("Value")
-                                .HasColumnName("Poblacion")
+                                .HasColumnName("Population")
                                 .HasColumnType("int");
 
-                            b1.HasKey("PaisId");
+                            b1.HasKey("CountryId");
 
-                            b1.ToTable("Paises");
+                            b1.ToTable("Countries");
 
                             b1.WithOwner()
-                                .HasForeignKey("PaisId");
+                                .HasForeignKey("CountryId");
                         });
 
-                    b.OwnsOne("LogicaNegocio.VO.Region", "Region", b1 =>
+                    b.OwnsOne("LogicaNegocio.VO.RegionValue", "Region", b1 =>
                         {
-                            b1.Property<int>("PaisId")
+                            b1.Property<int>("CountryId")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -119,12 +122,12 @@ namespace LogicaAccesoDatos.Migrations
                                 .HasColumnName("Region")
                                 .HasColumnType("nvarchar(max)");
 
-                            b1.HasKey("PaisId");
+                            b1.HasKey("CountryId");
 
-                            b1.ToTable("Paises");
+                            b1.ToTable("Countries");
 
                             b1.WithOwner()
-                                .HasForeignKey("PaisId");
+                                .HasForeignKey("CountryId");
                         });
                 });
 #pragma warning restore 612, 618

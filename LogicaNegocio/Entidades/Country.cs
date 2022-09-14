@@ -10,21 +10,31 @@ namespace LogicaNegocio.Entidades
     public class Country: IEntity
     {
         public int Id { get; set; }
-        public NameValue Name { get; set; } // Solo alfabetico y espacios embebidos - es unico
+        public NameValue Name { get; set; }
         public ISOAlfa3Value IsoAlfa3 { get; set; } 
-        public PositiveFloatValue PBI { get; set; } 
+        public PositiveFloatValue GDP { get; set; } 
         public PositiveIntegerValue Population { get; set; }
-        //public ImagenBandera ImgBandera { get; set; } 
+        public string Image { get; set; } 
         public RegionValue Region { get; set; }
-        
-        
+        public Country ()
+        {
+
+        }
+        public Country (string name, string isoalpha, float gdp, int population, string region)
+        {
+            Name = new NameValue(name);
+            IsoAlfa3 = new ISOAlfa3Value(isoalpha);
+            GDP = new PositiveFloatValue(gdp);
+            Population = new PositiveIntegerValue(population);
+            Region = new RegionValue(region);
+            Image = $"{IsoAlfa3.Value}.png";
+        }
         /*public override bool Equals(object obj)
         {
             Pais unP = obj as Pais;
             return unP != null && unP.Nombre.Value() == Nombre.Value();
         }*/
-
-        public void Validar()
+        public void validate()
         {
             string nombre = Name.Value.ToUpper();
             string alfa3 = IsoAlfa3.Value.ToUpper();

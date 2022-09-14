@@ -1,5 +1,3 @@
-using LogicaAccesoDatos.Memoria;
-using LogicaNegocio.InterfaceRepositorio;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,10 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LogicaAplicacion.CasosUso.Paises;
-using LogicaAplicacion.CasosUso.IPaises;
-using LogicaAccesoDatos.EF;
 using Microsoft.EntityFrameworkCore;
+
+using LogicaAccesoDatos.EF;
+using LogicaAccesoDatos.Interfaces;
+using LogicaAplicacion.UseCases.Countries;
 
 namespace WebApp
 {
@@ -30,10 +29,10 @@ namespace WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ObligatorioContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("obligatorio")));
+                options.UseSqlServer(Configuration.GetConnectionString("production")));
             services.AddControllersWithViews();
-            services.AddScoped<IRepositoryCountry, RepositorioPais>();
-            services.AddScoped<ICreate, Create>();
+            services.AddScoped<IRepositoryCountry, RepositoryCountry>();
+            services.AddScoped<IUC_Country, UC_Country>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

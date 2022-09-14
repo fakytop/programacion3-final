@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using LogicaNegocio.Entidades;
 using System.Text;
 
-namespace LogicaNegocio.InterfaceRepositorio
+namespace LogicaAccesoDatos.Interfaces
 {
     public interface IRepositoryNationalTeam: IRepository<NationalTeam>
     {
