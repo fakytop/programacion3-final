@@ -1,5 +1,5 @@
 ﻿using LogicaNegocio.Entidades;
-using LogicaNegocio.InterfaceRepositorio;
+using LogicaAccesoDatos.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,12 +22,12 @@ namespace LogicaAccesoDatos.EF
             _context.SaveChanges(); 
         }
 
-        public void Delete(int id)
+        public IEnumerable<NationalTeam> All()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<NationalTeam> FindAll()
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
