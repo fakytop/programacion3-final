@@ -1,5 +1,5 @@
 ﻿using LogicaNegocio.Entidades;
-using LogicaAccesoDatos.Interfaces;
+using LogicaNegocio.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using LogicaNegocio.Entidades;
 
-namespace LogicaAccesoDatos.Interfaces
+
+namespace LogicaNegocio.Interfaces
 {
-    public interface IRepositoryCountry: IRepository<Country>
+    public interface IRepositoryMatch: IRepository<Match>
     {
     }
 }

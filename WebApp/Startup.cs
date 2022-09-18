@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 using LogicaAccesoDatos.EF;
-using LogicaAccesoDatos.Interfaces;
+using LogicaNegocio.Interfaces;
 using LogicaAplicacion.UseCases.Countries;
 
 namespace WebApp

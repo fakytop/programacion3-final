@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LogicaAccesoDatos.Interfaces
+namespace LogicaNegocio.Interfaces
 {
     public interface IRepositoryGroupStage: IRepository<GroupStage>
     {
