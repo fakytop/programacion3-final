@@ -13,6 +13,9 @@ using Microsoft.EntityFrameworkCore;
 using LogicaAccesoDatos.EF;
 using LogicaNegocio.Interfaces;
 using LogicaAplicacion.UseCases.Countries;
+using LogicaAplicacion.UseCases.Interfaces;
+using LogicaNegocio.Entidades;
+using LogicaAplicacion.UseCases.NationalTeams;
 
 namespace WebApp
 {
@@ -30,9 +33,19 @@ namespace WebApp
         {
             services.AddDbContext<ObligatorioContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("production")));
+
+
+
             services.AddControllersWithViews();
             services.AddScoped<IRepositoryCountry, RepositoryCountry>();
             services.AddScoped<IUC_Country, UC_Country>();
+
+            services.AddScoped<IRepositoryNationalTeam, RepositoryNationalTeam>();
+            services.AddScoped<ICreate<NationalTeam>, CreateNationalTeam>();
+            services.AddScoped<IRead<NationalTeam>, ReadAllNationalTeam>();
+            services.AddScoped<IUpdate<NationalTeam>, UpdateNationalTeam>();
+            services.AddScoped<IDelete<NationalTeam>, DeleteNationalTeam>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,7 +72,7 @@ namespace WebApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}");
+                    pattern: "{controller=NationalTeam}/{action=Index}");
             });
         }
     }

@@ -1,4 +1,5 @@
-﻿using LogicaNegocio.Entidades;
+﻿using LogicaAccesoDatos.EF.Config;
+using LogicaNegocio.Entidades;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,8 @@ namespace LogicaAccesoDatos.EF
         public ObligatorioContext(DbContextOptions<ObligatorioContext> options): base(options) { }
 
         public DbSet<Country> Countries { get; set; }
-
+        public DbSet<NationalTeam> NationalTeams { get; set; }
+       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -46,6 +48,8 @@ namespace LogicaAccesoDatos.EF
                 .OwnsOne(p => p.Region)
                 .Property(p => p.Value)
                 .HasColumnName("Region");
+
+            modelBuilder.ApplyConfiguration(new NationalTeamConfig());
         }
     }
 }
