@@ -53,6 +53,7 @@ namespace WebApp.Controllers
         // GET: NationalTeamController/Create
         public ActionResult Create()
         {
+            ViewBag.CountriesList = _ucCountry.All();
             return View();
         }
 
