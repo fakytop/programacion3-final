@@ -1,13 +1,14 @@
-﻿using LogicaNegocio.Entidades;
+﻿//using LogicaNegocio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApp.Models
+namespace WebApplication1.Models
+
 {
-    [NotMapped()]
+ 
     public class NationalTeamVM
     {
         public int Id { get; set; }

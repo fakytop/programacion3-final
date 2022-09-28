@@ -1,4 +1,5 @@
 ﻿using LogicaAplicacion.UseCases.Interfaces;
+using LogicaAplicacion.UseCases.Countries;
 using LogicaNegocio.Entidades;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,24 +17,28 @@ namespace WebApp.Controllers
         private IRead<NationalTeam> _ucReadNationalTeam;
         private IUpdate<NationalTeam> _ucUpdateNationalTeam;
         private IDelete<NationalTeam> _ucDeleteNationalTeam;
+        private IUC_Country _ucCountry;
 
         public NationalTeamController(
             ICreate<NationalTeam> createNT,
             IRead<NationalTeam> readNT,
             IUpdate<NationalTeam> updateNT,
-            IDelete<NationalTeam> deleteNT
+            IDelete<NationalTeam> deleteNT,
+            IUC_Country ucCountry
             )
         {
             _ucCreateNationalTeam = createNT;
             _ucReadNationalTeam = readNT;
             _ucUpdateNationalTeam = updateNT;
             _ucDeleteNationalTeam = deleteNT;
+            _ucCountry = ucCountry;
         }
 
 
         // GET: NationalTeamController
         public ActionResult Index()
         {
+
             return View(NationalTeamMapper.FromNationalTeams(_ucReadNationalTeam.ReadAll()));
             //Podría pasarle el listado de Countries para poder leer el pais en concreto.
         }
@@ -44,6 +49,7 @@ namespace WebApp.Controllers
             return View();
         }
 
+  
         // GET: NationalTeamController/Create
         public ActionResult Create()
         {

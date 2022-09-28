@@ -1,5 +1,6 @@
 ﻿using LogicaNegocio.Entidades;
 using LogicaNegocio.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,7 @@ namespace LogicaAccesoDatos.EF
             try
             {
                 return _db.NationalTeams
+                    .Include(c => c.Country)
                     .OrderBy(nt => nt.Name.Value)
                     .ThenBy(nt => nt.Country.Name.Value);
             }

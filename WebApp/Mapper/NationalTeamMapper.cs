@@ -22,8 +22,6 @@ namespace WebApp.Mapper
             return new NationalTeam
             {
                 Id = ntVM.Id,
-                //Country = new Country(ntVM.Country),
-                //Necesito una forma de devolver un Country con la ID, debería consultar con el repositorio.
                 Name = new NameValue(ntVM.Name),
                 Phone = new PhoneNumber(ntVM.Phone),
                 Email = new EmailValue(ntVM.Email),
@@ -37,11 +35,10 @@ namespace WebApp.Mapper
             {
                 return null;
             }
-
             return new NationalTeamVM
             {
                 Id = nt.Id,
-                //idCountry = nt.Country.Id,
+                idCountry = nt.Country.Id,
                 Name = nt.Name.Value,
                 Phone = nt.Phone.Value,
                 Email = nt.Email.Value,
