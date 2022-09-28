@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LogicaAplicacion.UseCases.NationalTeams
+namespace LogicaAplicacion.UseCases.UCEntities.NationalTeams
 {
     public class ReadAllNationalTeam : IRead<NationalTeam>
     {

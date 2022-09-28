@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LogicaAplicacion.UseCases.Countries;
+using LogicaAplicacion.UseCases.UCEntities.Countries;
 using LogicaNegocio.Entidades;
 using LogicaNegocio.VO;
 using LogicaNegocio.Excepciones;

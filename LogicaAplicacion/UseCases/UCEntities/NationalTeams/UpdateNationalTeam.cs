@@ -5,20 +5,20 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LogicaAplicacion.UseCases.NationalTeams
+namespace LogicaAplicacion.UseCases.UCEntities.NationalTeams
 {
-    public class DeleteNationalTeam : IDelete<NationalTeam>
+    public class UpdateNationalTeam: IUpdate<NationalTeam>
     {
         private IRepositoryNationalTeam _repo;
 
-        public DeleteNationalTeam(IRepositoryNationalTeam repo)
+        public UpdateNationalTeam(IRepositoryNationalTeam repo)
         {
             _repo = repo;
         }
 
-        public void Delete(NationalTeam obj)
+        public void Update(NationalTeam obj)
         {
-            _repo.Delete(obj.Id);
+            _repo.Update(obj);
         }
     }
 }

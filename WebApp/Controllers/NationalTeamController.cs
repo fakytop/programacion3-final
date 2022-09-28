@@ -1,5 +1,5 @@
 ﻿using LogicaAplicacion.UseCases.Interfaces;
-using LogicaAplicacion.UseCases.Countries;
+using LogicaAplicacion.UseCases.UCEntities.Countries;
 using LogicaNegocio.Entidades;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

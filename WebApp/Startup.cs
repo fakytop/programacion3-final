@@ -12,10 +12,10 @@ using Microsoft.EntityFrameworkCore;
 
 using LogicaAccesoDatos.EF;
 using LogicaNegocio.Interfaces;
-using LogicaAplicacion.UseCases.Countries;
+using LogicaAplicacion.UseCases.UCEntities.Countries;
 using LogicaAplicacion.UseCases.Interfaces;
 using LogicaNegocio.Entidades;
-using LogicaAplicacion.UseCases.NationalTeams;
+using LogicaAplicacion.UseCases.UCEntities.NationalTeams;
 
 namespace WebApp
 {

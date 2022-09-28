@@ -4,7 +4,7 @@ using System.Text;
 using LogicaNegocio.Interfaces;
 using LogicaNegocio.Entidades;
 
-namespace LogicaAplicacion.UseCases.Countries
+namespace LogicaAplicacion.UseCases.UCEntities.Countries
 {
     public class UC_Country : IUC_Country
     {
