@@ -1,0 +1,56 @@
+﻿@model LogicaNegocio.Entidades.Country
+
+@{
+    ViewData["Title"] = "AgregarPais";
+}
+
+<h1>AgregarPais</h1>
+
+<h4>Pais</h4>
+<hr />
+
+@ViewBag.Mensaje
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" name="name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsoAlfa3" class="control-label"></label>
+                <input asp-for="IsoAlfa3" name="isoalpha" class="form-control" />
+                <span asp-validation-for="IsoAlfa3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GDP" class="control-label"></label>
+                <input asp-for="GDP" name="gdp" type="number" class="form-control" />
+                <span asp-validation-for="GDP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Population" class="control-label"></label>
+                <input asp-for="Population" name="population" type="number" class="form-control" />
+                <span asp-validation-for="Population" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Region" class="control-label"></label>
+                <input asp-for="Region" name="region" class="form-control" />
+                <span asp-validation-for="Region" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
