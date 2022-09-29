@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using LogicaNegocio.Entidades;
 using LogicaNegocio.Interfaces;
@@ -33,6 +34,19 @@ namespace LogicaAccesoDatos.EF
         public void Update(Country obj)
         {
             throw new NotImplementedException();
+        }
+
+        public Country FindById(int id)
+        {
+            Country c = _db.Countries
+                .FirstOrDefault(c => c.Id == id);
+        
+            if(c == null)
+            {
+                throw new Exception("No se encontró país");
+            }
+
+            return c;
         }
     }
 }

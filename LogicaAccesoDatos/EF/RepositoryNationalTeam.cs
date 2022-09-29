@@ -21,7 +21,7 @@ namespace LogicaAccesoDatos.EF
         public void Add(NationalTeam obj)
         {
             NationalTeam nt = _db.NationalTeams.Find(obj.Country.Id);
-            if(nt != null)
+            if (nt != null)
             {
                 throw new Exception("Ya existe una selección para ese país.");
             }
@@ -103,6 +103,7 @@ namespace LogicaAccesoDatos.EF
             }
             return nt;
         }
+
 
     }
 }

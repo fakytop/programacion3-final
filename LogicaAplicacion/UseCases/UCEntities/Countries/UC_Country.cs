@@ -23,9 +23,9 @@ namespace LogicaAplicacion.UseCases.UCEntities.Countries
             _repository.Add(country);
         }
 
-        public Country FindBy(int id)
+        public Country FindById(int id)
         {
-            throw new NotImplementedException();
+            return _repository.FindById(id);
         }
 
         public Country FindBy(string isoalpha)

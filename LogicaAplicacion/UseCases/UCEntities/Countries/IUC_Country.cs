@@ -9,7 +9,7 @@ namespace LogicaAplicacion.UseCases.UCEntities.Countries
     {
         public void Create(Country country);
         public IEnumerable<Country> All();
-        public Country FindBy(int id);
+        public Country FindById(int id);
         public Country FindBy(string isoalpha);
     }
 }
