@@ -37,9 +37,11 @@ namespace WebApp.Controllers
 
 
         // GET: NationalTeamController
-        public IActionResult Index()
+        public IActionResult Index(int Id)
         {
             return View(NationalTeamMapper.FromNationalTeams(_ucReadNationalTeam.ReadAll()));
+            //TODO: Cuando reciba un Id != 0, necesito devolver un IEnumerable con una sola NT, para listarlo sobre el listado.
+            //TODO: Otra forma es usar el control Details, donde recibiría un NT, en vez del listado.
         }
 
         
@@ -87,7 +89,6 @@ namespace WebApp.Controllers
             {
                 return View();
             }
-            //Prueba branch
         }
 
         public ActionResult Delete(int id)
