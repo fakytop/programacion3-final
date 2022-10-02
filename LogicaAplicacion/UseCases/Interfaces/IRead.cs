@@ -7,5 +7,6 @@ namespace LogicaAplicacion.UseCases.Interfaces
     public interface IRead<T>
     {
         public IEnumerable<T> ReadAll();
+        public T FindById(int id);
     }
 }

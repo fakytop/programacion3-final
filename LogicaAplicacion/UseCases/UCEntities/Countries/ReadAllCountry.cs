@@ -19,5 +19,10 @@ namespace LogicaAplicacion.UseCases.UCEntities.Countries
         {
             return _repository.All();
         }
+
+        public Country FindById(int id)
+        {
+            return _repository.FindById(id);
+        }
     }
 }
