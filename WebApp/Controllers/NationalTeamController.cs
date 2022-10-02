@@ -17,21 +17,21 @@ namespace WebApp.Controllers
         private IRead<NationalTeam> _ucReadNationalTeam;
         private IUpdate<NationalTeam> _ucUpdateNationalTeam;
         private IDelete<NationalTeam> _ucDeleteNationalTeam;
-        private IUC_Country _ucCountry;
+        private ICreate<Country> _ucCreateCountry;
 
         public NationalTeamController(
             ICreate<NationalTeam> createNT,
             IRead<NationalTeam> readNT,
             IUpdate<NationalTeam> updateNT,
             IDelete<NationalTeam> deleteNT,
-            IUC_Country ucCountry
+            CreateCountry ucCountry
             )
         {
             _ucCreateNationalTeam = createNT;
             _ucReadNationalTeam = readNT;
             _ucUpdateNationalTeam = updateNT;
             _ucDeleteNationalTeam = deleteNT;
-            _ucCountry = ucCountry;
+            _ucCreateCountry = ucCountry;
         }
 
 

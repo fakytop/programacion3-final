@@ -7,20 +7,23 @@ using LogicaAplicacion.UseCases.UCEntities.Countries;
 using LogicaNegocio.Entidades;
 using LogicaNegocio.VO;
 using LogicaNegocio.Excepciones;
+using LogicaAplicacion.UseCases.Interfaces;
 
 namespace WebApp.Controllers
 {
     public class CountryController : Controller
     {
-        private IUC_Country _use_cases;
+        private ICreate<Country> _ucCreateCountry;
+        private IRead<Country> _ucReadCountry;
 
-        public CountryController(IUC_Country use_cases)
+        public CountryController(ICreate<Country> ucCreateCountry, IRead<Country> ucReadCountries)
         {
-            _use_cases = use_cases;
+            _ucCreateCountry = ucCreateCountry;
+            _ucReadCountry = ucReadCountries;
         }
         public IActionResult Index ()
         {
-            return View(_use_cases.All());
+            return View(_ucReadCountry.ReadAll());
         }
         public IActionResult Create()
         {
@@ -38,7 +41,7 @@ namespace WebApp.Controllers
                 country.GDP = new PositiveFloatValue (gdp);
                 country.Population = new PositiveIntegerValue(population);
                 country.Region = new RegionValue(region);
-                _use_cases.Create(country);
+                _ucCreateCountry.Create(country);
                 return View();
 
             }

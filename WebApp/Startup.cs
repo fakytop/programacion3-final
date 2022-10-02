@@ -34,11 +34,11 @@ namespace WebApp
             services.AddDbContext<ObligatorioContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("production")));
 
-
-
             services.AddControllersWithViews();
+
             services.AddScoped<IRepositoryCountry, RepositoryCountry>();
-            services.AddScoped<IUC_Country, UC_Country>();
+            services.AddScoped<IRead<Country>, ReadAllCountry>();
+            services.AddScoped<ICreate<Country>, CreateCountry>();
 
             services.AddScoped<IRepositoryNationalTeam, RepositoryNationalTeam>();
             services.AddScoped<ICreate<NationalTeam>, CreateNationalTeam>();
@@ -72,7 +72,7 @@ namespace WebApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=NationalTeam}/{action=Index}");
+                    pattern: "{controller=Home}/{action=Index}");
             });
         }
     }
