@@ -34,6 +34,8 @@ namespace WebApp
             services.AddDbContext<ObligatorioContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("production")));
 
+
+
             services.AddControllersWithViews();
 
             services.AddScoped<IRepositoryCountry, RepositoryCountry>();

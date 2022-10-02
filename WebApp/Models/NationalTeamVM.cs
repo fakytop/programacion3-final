@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace WebApp.Models
 {
-    [NotMapped()]
     public class NationalTeamVM
     {
         public int Id { get; set; }

@@ -38,5 +38,10 @@ namespace LogicaAccesoDatos.Memoria
         {
             throw new NotImplementedException();
         }
+
+        public Country FindById(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

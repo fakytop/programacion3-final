@@ -1,4 +1,5 @@
-﻿using LogicaNegocio.Entidades;
+﻿using LogicaAplicacion.UseCases.UCEntities.Countries;
+using LogicaNegocio.Entidades;
 using LogicaNegocio.VO;
 using System;
 using System.Collections.Generic;

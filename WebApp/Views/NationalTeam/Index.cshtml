@@ -1,10 +1,10 @@
-﻿@model IEnumerable<NationalTeamVM>
+﻿@model IEnumerable<WebApp.Models.NationalTeamVM>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>National Teams</h1>
+<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,43 +12,55 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Id-Country</th>
-            <th>Bettors</th>
-
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idCountry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bettors)
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @item.Id
+                @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @item.Name
+                @Html.DisplayFor(modelItem => item.idCountry)
             </td>
             <td>
-                @item.Phone
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @item.Email
+                @Html.DisplayFor(modelItem => item.Phone)
             </td>
             <td>
-                @item.idCountry
+                @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @item.Bettors
+                @Html.DisplayFor(modelItem => item.Bettors)
             </td>
             @*<td>
             @item.idCountry
         </td>*@
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

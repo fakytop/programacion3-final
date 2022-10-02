@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Mapper;
+using WebApp.Models;
 
 namespace WebApp.Controllers
 {
@@ -17,26 +18,26 @@ namespace WebApp.Controllers
         private IRead<NationalTeam> _ucReadNationalTeam;
         private IUpdate<NationalTeam> _ucUpdateNationalTeam;
         private IDelete<NationalTeam> _ucDeleteNationalTeam;
-        private ICreate<Country> _ucCreateCountry;
+        private IUC_Country _ucCountry;
 
         public NationalTeamController(
             ICreate<NationalTeam> createNT,
             IRead<NationalTeam> readNT,
             IUpdate<NationalTeam> updateNT,
             IDelete<NationalTeam> deleteNT,
-            CreateCountry ucCountry
+            IUC_Country ucCountry
             )
         {
             _ucCreateNationalTeam = createNT;
             _ucReadNationalTeam = readNT;
             _ucUpdateNationalTeam = updateNT;
             _ucDeleteNationalTeam = deleteNT;
-            _ucCreateCountry = ucCountry;
+            _ucCountry = ucCountry;
         }
 
 
         // GET: NationalTeamController
-        public ActionResult Index()
+        public IActionResult Index()
         {
 
             return View(NationalTeamMapper.FromNationalTeams(_ucReadNationalTeam.ReadAll()));
@@ -44,32 +45,33 @@ namespace WebApp.Controllers
         }
 
         // GET: NationalTeamController/Details/5
-        public ActionResult Details(int id)
+        public IActionResult Details(int id)
         {
             return View();
         }
 
   
         // GET: NationalTeamController/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
+            ViewBag.CountriesList = _ucCountry.All();
             return View();
         }
 
         // POST: NationalTeamController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Create(NationalTeamVM ntVM)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            NationalTeam nationalTeam = NationalTeamMapper.ToNationalTeam(ntVM);
+            nationalTeam.Country = _ucCountry.FindById(ntVM.idCountry);
+            _ucCreateNationalTeam.Create(nationalTeam);   
+
+
+            return RedirectToAction("Index");
         }
+
+     
 
         // GET: NationalTeamController/Edit/5
         public ActionResult Edit(int id)
