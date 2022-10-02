@@ -44,6 +44,10 @@ namespace WebApp.Controllers
             //TODO: Otra forma es usar el control Details, donde recibiría un NT, en vez del listado.
         }
 
+        public IActionResult Details(int id)
+        {
+            return View(NationalTeamMapper.FromNationalTeam(_ucReadNationalTeam.FindById(id)));
+        }
         
         public IActionResult Create()
         {
