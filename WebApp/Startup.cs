@@ -39,6 +39,7 @@ namespace WebApp
             services.AddScoped<IRepositoryCountry, RepositoryCountry>();
             services.AddScoped<IRead<Country>, ReadAllCountry>();
             services.AddScoped<ICreate<Country>, CreateCountry>();
+            services.AddScoped<IDelete<Country>, DeleteCountry>();
 
             services.AddScoped<IRepositoryNationalTeam, RepositoryNationalTeam>();
             services.AddScoped<ICreate<NationalTeam>, CreateNationalTeam>();

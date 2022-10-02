@@ -27,7 +27,8 @@ namespace LogicaAccesoDatos.EF
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Country country = _db.Countries.Find(id);
+            _db.Countries.Remove(country);
         }
 
         public void Update(Country obj)

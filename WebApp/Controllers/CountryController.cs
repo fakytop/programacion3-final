@@ -15,11 +15,13 @@ namespace WebApp.Controllers
     {
         private ICreate<Country> _ucCreateCountry;
         private IRead<Country> _ucReadCountry;
+        private IDelete<Country> _ucDeleteCountry;
 
-        public CountryController(ICreate<Country> ucCreateCountry, IRead<Country> ucReadCountries)
+        public CountryController(ICreate<Country> ucCreateCountry, IRead<Country> ucReadCountries, IDelete<Country> ucDeleteCountry)
         {
             _ucCreateCountry = ucCreateCountry;
             _ucReadCountry = ucReadCountries;
+            _ucDeleteCountry = ucDeleteCountry;
         }
         public IActionResult Index ()
         {
@@ -51,6 +53,11 @@ namespace WebApp.Controllers
             }
 
             return View(country);
+        }
+
+        public IActionResult Delete (int id)
+        {
+            return View("Index");
         }
 
     }
