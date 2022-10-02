@@ -61,7 +61,7 @@ namespace WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Edit(int id)
+        public IActionResult Edit(int id)
         {
             NationalTeam nt = _ucReadNationalTeam.FindById(id);
             NationalTeamVM ntVM = NationalTeamMapper.FromNationalTeam(nt);
@@ -74,13 +74,16 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Edit(NationalTeamVM ntVM)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                NationalTeam nt = NationalTeamMapper.ToNationalTeam(ntVM);
+                nt.Country = _ucCountry.FindById(ntVM.idCountry);
+                _ucUpdateNationalTeam.Update(nt);
+                return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
                 return View();
             }
