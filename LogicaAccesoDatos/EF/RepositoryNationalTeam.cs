@@ -95,6 +95,7 @@ namespace LogicaAccesoDatos.EF
         public NationalTeam FindById(int id)
         {
             NationalTeam nt = _db.NationalTeams
+                .Include(c => c.Country)
                 .FirstOrDefault(nt => nt.Id == id);
 
             if(nt == null)
