@@ -18,7 +18,7 @@ namespace LogicaAplicacion.UseCases.UCEntities.NationalTeams
 
         public NationalTeam FindById(int id)
         {
-            throw new NotImplementedException();
+            return _repo.FindById(id);
         }
 
         public IEnumerable<NationalTeam> ReadAll()

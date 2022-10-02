@@ -63,6 +63,12 @@ namespace WebApp.Controllers
 
         public ActionResult Edit(int id)
         {
+            NationalTeam nt = _ucReadNationalTeam.FindById(id);
+            NationalTeamVM ntVM = NationalTeamMapper.FromNationalTeam(nt);
+            ntVM.idCountry = nt.Country.Id;
+
+            ViewBag.NT = ntVM;
+            
             return View();
         }
 
