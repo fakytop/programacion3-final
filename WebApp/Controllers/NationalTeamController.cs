@@ -79,6 +79,8 @@ namespace WebApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(NationalTeamVM ntVM)
         {
+            ViewBag.message = "";
+            ViewBag.CountriesList = _ucCountry.ReadAll();
             try
             {
                 NationalTeam nationalTeam = NationalTeamMapper.ToNationalTeam(ntVM);
@@ -96,7 +98,7 @@ namespace WebApp.Controllers
                 ViewBag.message = e.Message;
             }
 
-            return RedirectToAction("Create");
+            return View(ntVM);
         }
 
         public IActionResult Edit(int id)
