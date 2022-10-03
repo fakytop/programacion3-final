@@ -9,7 +9,9 @@ namespace LogicaAccesoDatos.Memoria
     public class RepositorioPartido : IRepositoryMatch
     {
         private static List<Match> partidos = new List<Match>();
+#pragma warning disable CS0414 // El campo 'RepositorioPartido.ultId' está asignado pero su valor nunca se usa
         private static int ultId = 1;
+#pragma warning restore CS0414 // El campo 'RepositorioPartido.ultId' está asignado pero su valor nunca se usa
 
         public void Add(Match obj)
         {

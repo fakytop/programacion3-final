@@ -11,5 +11,16 @@ namespace LogicaNegocio.Entidades
         public int Id { get; set; }
         public CodeValue Group { get; set; }
         public List<NationalTeam> NationalTeams { get; set; }
+
+        public void Validate()
+        {
+            //validar todo 
+        }
+
+        public void Update(GroupStage gs)
+        {
+            Group = gs.Group;
+            NationalTeams = gs.NationalTeams;
+        }
     }
 }

@@ -13,7 +13,8 @@ namespace LogicaAccesoDatos.EF
 
         public DbSet<Country> Countries { get; set; }
         public DbSet<NationalTeam> NationalTeams { get; set; }
-       
+        public DbSet<GroupStage> GroupsStage { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
