@@ -97,7 +97,7 @@ namespace WebApp.Controllers
             {
                 ViewBag.message = e.Message;
             }
-
+            //prueba?
             return View(ntVM);
         }
 
