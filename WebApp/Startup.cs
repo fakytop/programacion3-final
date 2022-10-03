@@ -75,7 +75,7 @@ namespace WebApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Country}/{action=Index}");
+                    pattern: "{controller=Home}/{action=Index}");
             });
         }
     }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LogicaAccesoDatos.EF.Config
 {
-    public class NationalTeamConfig : IEntityTypeConfiguration<NationalTeam>
+    public class CountryConfig : IEntityTypeConfiguration<NationalTeam>
     {
         public void Configure(EntityTypeBuilder<NationalTeam> builder)
         {
