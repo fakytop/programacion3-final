@@ -1,6 +1,7 @@
 ﻿using LogicaAplicacion.UseCases.Interfaces;
 using LogicaAplicacion.UseCases.UCEntities.Countries;
 using LogicaNegocio.Entidades;
+using LogicaNegocio.Excepciones;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -39,14 +40,33 @@ namespace WebApp.Controllers
         // GET: NationalTeamController
         public IActionResult Index(int Id)
         {
-            return View(NationalTeamMapper.FromNationalTeams(_ucReadNationalTeam.ReadAll()));
+            try
+            {
+                return View(NationalTeamMapper.FromNationalTeams(_ucReadNationalTeam.ReadAll()));
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception($"Error: {e.Message}");
+            }
             //TODO: Cuando reciba un Id != 0, necesito devolver un IEnumerable con una sola NT, para listarlo sobre el listado.
             //TODO: Otra forma es usar el control Details, donde recibiría un NT, en vez del listado.
         }
 
         public IActionResult Details(int id)
         {
-            return View(NationalTeamMapper.FromNationalTeam(_ucReadNationalTeam.FindById(id)));
+            try
+            {
+                return View(NationalTeamMapper.FromNationalTeam(_ucReadNationalTeam.FindById(id)));
+            }
+            catch(DomainException de)
+            {
+                throw new DomainException(de.Message); 
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
         
         public IActionResult Create()
@@ -59,12 +79,24 @@ namespace WebApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(NationalTeamVM ntVM)
         {
-            NationalTeam nationalTeam = NationalTeamMapper.ToNationalTeam(ntVM);
-            nationalTeam.Country = _ucCountry.FindById(ntVM.idCountry);
-            _ucCreateNationalTeam.Create(nationalTeam);   
+            try
+            {
+                NationalTeam nationalTeam = NationalTeamMapper.ToNationalTeam(ntVM);
+                nationalTeam.Country = _ucCountry.FindById(ntVM.idCountry);
+                _ucCreateNationalTeam.Create(nationalTeam);
 
+                return RedirectToAction("Index");
+            }
+            catch (DomainException de)
+            {
+                ViewBag.message = de.Message;
+            }
+            catch (Exception e)
+            {
+                ViewBag.message = e.Message;
+            }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         public IActionResult Edit(int id)

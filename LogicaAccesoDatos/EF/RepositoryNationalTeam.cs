@@ -1,4 +1,5 @@
 ﻿using LogicaNegocio.Entidades;
+using LogicaNegocio.Excepciones;
 using LogicaNegocio.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -23,7 +24,8 @@ namespace LogicaAccesoDatos.EF
             NationalTeam nt = _db.NationalTeams.Find(obj.Country.Id);
             if (nt != null)
             {
-                throw new Exception("Ya existe una selección para ese país.");
+                throw new DomainException("A National Team already exists.");
+
             }
             try
             {
@@ -33,7 +35,7 @@ namespace LogicaAccesoDatos.EF
             }
             catch(Exception e)
             {
-                throw new Exception("Algo pasó");
+                throw new Exception($"Eror: {e.Message}");
             }
             }
 
@@ -48,7 +50,7 @@ namespace LogicaAccesoDatos.EF
             }
             catch(Exception e)
             {
-                throw new Exception($"Error en FindAll: {e.Message}");
+                throw new Exception($"Error: {e.Message}");
             }
         }
 
@@ -57,7 +59,7 @@ namespace LogicaAccesoDatos.EF
             NationalTeam nt = FindById(id);
             if(nt == null)
             {
-                throw new Exception("No se encontró una selección con ese Id");
+                throw new InvalidCodeException("Can't find any National Team to delete.");
             }
             try
             {
@@ -66,7 +68,7 @@ namespace LogicaAccesoDatos.EF
             }
             catch(Exception e)
             {
-                throw new Exception("NO");
+                throw new Exception($"Error: {e.Message}");
             }
         }
 
@@ -75,7 +77,7 @@ namespace LogicaAccesoDatos.EF
             NationalTeam nt = _db.NationalTeams.Find(obj.Id);
             if(nt == null)
             {
-                throw new Exception("No existe NT.");
+                throw new InvalidCodeException("Didn't find any National Team to update.");
             }
 
             try
@@ -94,15 +96,24 @@ namespace LogicaAccesoDatos.EF
 
         public NationalTeam FindById(int id)
         {
-            NationalTeam nt = _db.NationalTeams
-                .Include(c => c.Country)
-                .FirstOrDefault(nt => nt.Id == id);
-
-            if(nt == null)
+            try
             {
-                throw new Exception("No se encontró una selección nacional con ese ID");
+                NationalTeam nt = _db.NationalTeams
+                   .Include(c => c.Country)
+                   .FirstOrDefault(nt => nt.Id == id);
+
+                if (nt == null)
+                {
+                    throw new InvalidCodeException("Didn't find any National Team with that ID");
+                }
+                return nt;
+
             }
-            return nt;
+            catch (Exception e)
+            {
+                throw new Exception($"Error: {e.Message}");
+            }
+            
         }
 
 

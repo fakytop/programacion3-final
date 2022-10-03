@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using LogicaNegocio.InterfacesDominio;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace LogicaNegocio.Entidades
 {
