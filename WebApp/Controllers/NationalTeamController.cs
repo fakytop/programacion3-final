@@ -46,11 +46,8 @@ namespace WebApp.Controllers
             }
             catch (Exception e)
             {
-
                 throw new Exception($"Error: {e.Message}");
             }
-            //TODO: Cuando reciba un Id != 0, necesito devolver un IEnumerable con una sola NT, para listarlo sobre el listado.
-            //TODO: Otra forma es usar el control Details, donde recibiría un NT, en vez del listado.
         }
 
         public IActionResult Details(int id)
@@ -134,20 +131,5 @@ namespace WebApp.Controllers
             _ucDeleteNationalTeam.Delete(new NationalTeam() { Id = id });
             return RedirectToAction("Index");
         }
-
-        //// POST: NationalTeamController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }
