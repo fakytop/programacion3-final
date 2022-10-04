@@ -21,6 +21,7 @@ namespace LogicaAccesoDatos.EF
 
             modelBuilder.ApplyConfiguration(new CountryConfig());
             modelBuilder.ApplyConfiguration(new NationalTeamConfig());
+            modelBuilder.ApplyConfiguration(new GroupStageConfig());
         }
     }
 }
