@@ -13,7 +13,7 @@ namespace LogicaAccesoDatos.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    ISOAlfa3 = table.Column<string>(nullable: true),
+                    IsoAlfa3 = table.Column<string>(nullable: true),
                     GDP = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
                     Population = table.Column<int>(nullable: true),
                     Image = table.Column<string>(nullable: true),
@@ -22,6 +22,19 @@ namespace LogicaAccesoDatos.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Countries", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GroupsStage",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Group = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GroupsStage", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -34,7 +47,8 @@ namespace LogicaAccesoDatos.Migrations
                     Name = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: true),
                     Email_Value = table.Column<string>(nullable: true),
-                    Bettors = table.Column<int>(nullable: true)
+                    Bettors = table.Column<int>(nullable: true),
+                    GroupStageId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -45,12 +59,23 @@ namespace LogicaAccesoDatos.Migrations
                         principalTable: "Countries",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_NationalTeams_GroupsStage_GroupStageId",
+                        column: x => x.GroupStageId,
+                        principalTable: "GroupsStage",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_NationalTeams_CountryId",
                 table: "NationalTeams",
                 column: "CountryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NationalTeams_GroupStageId",
+                table: "NationalTeams",
+                column: "GroupStageId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -60,6 +85,9 @@ namespace LogicaAccesoDatos.Migrations
 
             migrationBuilder.DropTable(
                 name: "Countries");
+
+            migrationBuilder.DropTable(
+                name: "GroupsStage");
         }
     }
 }

@@ -54,11 +54,12 @@ namespace WebApp.Controllers
 
             return View(country);
         }
-
+        [HttpGet]
         public IActionResult Delete (int id)
         {
-            return View("Index");
+            Country country = _ucReadCountry.FindById(id);
+            _ucDeleteCountry.Delete(country);
+            return RedirectToAction("Index");
         }
-
     }
 }

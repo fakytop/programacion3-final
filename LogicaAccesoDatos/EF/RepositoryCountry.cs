@@ -28,8 +28,10 @@ namespace LogicaAccesoDatos.EF
 
         public void Delete(int id)
         {
-            Country country = _db.Countries.Find(id);
+            Country country = _db.Countries.FirstOrDefault(country => country.Id == id);
             _db.Countries.Remove(country);
+            _db.SaveChanges();
+
         }
 
         public void Update(Country obj)
@@ -39,15 +41,15 @@ namespace LogicaAccesoDatos.EF
 
         public Country FindById(int id)
         {
-            Country c = _db.Countries
-                .FirstOrDefault(c => c.Id == id);
+            Country country = _db.Countries
+                .FirstOrDefault(country => country.Id == id);
         
-            if(c == null)
+            if(country == null)
             {
                 throw new Exception("No se encontró país");
             }
 
-            return c;
+            return country;
         }
     }
 }
