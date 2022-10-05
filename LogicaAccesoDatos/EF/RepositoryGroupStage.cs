@@ -28,9 +28,8 @@ namespace LogicaAccesoDatos.EF
         {
             try
             {
-                //Duda
                 return _db.GroupsStage
-                    .Include(c => c.Group)
+                    .Include(gs => gs.NationalTeams)
                     .OrderBy(gs => gs.Group.Value)
                     .ThenBy(gs => gs.Group.Value);
             }
@@ -39,7 +38,6 @@ namespace LogicaAccesoDatos.EF
                 throw new Exception($"Error en FindAll: {e.Message}");
             }
         }
-
         public void Delete(int id)
         {
             GroupStage group = FindById(id);
@@ -58,17 +56,16 @@ namespace LogicaAccesoDatos.EF
             }
         }
 
-        private GroupStage FindById(int id)
+        public GroupStage FindById(int id)
         {
-            // single 
-            GroupStage unGroup = _db.GroupsStage
-                // .Include(a => a.Pais)
-                .FirstOrDefault(a => a.Id == id);
-            if (unGroup == null)
+            GroupStage group = _db.GroupsStage
+                .Include (group => group.NationalTeams)
+                .FirstOrDefault(group => group.Id == id);
+            if (group == null)
             {
                 throw new Exception("No se encontró " + id);
             }
-            return unGroup;
+            return group;
         }
 
         public void Update(GroupStage obj)

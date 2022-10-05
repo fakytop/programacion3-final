@@ -7,5 +7,6 @@ namespace LogicaNegocio.Interfaces
 {
     public interface IRepositoryGroupStage: IRepository<GroupStage>
     {
+        public GroupStage FindById(int id);
     }
 }

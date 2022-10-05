@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LogicaAplicacion.UseCases.UCEntities.GroupsStage
 {
-    class ReadAllGroupStage: IRead<GroupStage>
+    public class ReadAllGroupStage: IRead<GroupStage>
     {
         private IRepositoryGroupStage _repo;
 
@@ -18,7 +18,7 @@ namespace LogicaAplicacion.UseCases.UCEntities.GroupsStage
 
         public GroupStage FindById(int id)
         {
-            throw new NotImplementedException();
+            return _repo.FindById(id);
         }
 
         public IEnumerable<GroupStage> ReadAll()
