@@ -44,7 +44,5 @@ namespace LogicaNegocio.Entidades
             Email = nt.Email;
             Bettors = nt.Bettors;
         }
-
-
     }
 }

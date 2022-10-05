@@ -34,9 +34,25 @@ namespace LogicaAccesoDatos.EF
 
         }
 
-        public void Update(Country obj)
+        public void Update(Country country)
         {
-            throw new NotImplementedException();
+            Country old = _db.Countries.Find(country.Id);
+
+            if (old == null)
+            {
+                throw new Exception("Didn't find any Country to update.");
+            }
+            try
+            {
+                country.validate();
+                old.Update(country);
+                _db.Countries.Update(old);
+                _db.SaveChanges();
+            } catch (Exception e)
+            {
+                throw new Exception($"Error: {e.Message}");
+            }
+
         }
 
         public Country FindById(int id)
