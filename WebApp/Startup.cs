@@ -34,13 +34,12 @@ namespace WebApp
             services.AddDbContext<ObligatorioContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("production")));
 
-
-
             services.AddControllersWithViews();
 
             services.AddScoped<IRepositoryCountry, RepositoryCountry>();
             services.AddScoped<IRead<Country>, ReadAllCountry>();
             services.AddScoped<ICreate<Country>, CreateCountry>();
+            services.AddScoped<IUpdate<Country>, UpdateCountry>();
             services.AddScoped<IDelete<Country>, DeleteCountry>();
 
             services.AddScoped<IRepositoryNationalTeam, RepositoryNationalTeam>();

@@ -34,6 +34,16 @@ namespace LogicaNegocio.Entidades
             Pais unP = obj as Pais;
             return unP != null && unP.Nombre.Value() == Nombre.Value();
         }*/
+        public void Update (Country updated)
+        {
+            Name = updated.Name;
+            IsoAlfa3 = updated.IsoAlfa3;
+            GDP = updated.GDP;
+            Population = updated.Population;
+            Region = updated.Region;
+            Image = updated.Image;
+        }
+
         public void validate()
         {
             string nombre = Name.Value.ToUpper();

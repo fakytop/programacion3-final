@@ -15,12 +15,14 @@ namespace WebApp.Controllers
     {
         private ICreate<Country> _ucCreateCountry;
         private IRead<Country> _ucReadCountry;
+        private IUpdate<Country> _ucUpdateCountry;
         private IDelete<Country> _ucDeleteCountry;
 
-        public CountryController(ICreate<Country> ucCreateCountry, IRead<Country> ucReadCountries, IDelete<Country> ucDeleteCountry)
+        public CountryController(ICreate<Country> ucCreateCountry, IRead<Country> ucReadCountries, IDelete<Country> ucDeleteCountry, IUpdate<Country> ucUpdateCountry)
         {
             _ucCreateCountry = ucCreateCountry;
             _ucReadCountry = ucReadCountries;
+            _ucUpdateCountry = ucUpdateCountry;
             _ucDeleteCountry = ucDeleteCountry;
         }
         public IActionResult Index ()
@@ -59,6 +61,21 @@ namespace WebApp.Controllers
         {
             Country country = _ucReadCountry.FindById(id);
             _ucDeleteCountry.Delete(country);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Update (int id)
+        {
+            Country country = _ucReadCountry.FindById(id);
+            return View(country);
+        }
+        [HttpPost]
+        public IActionResult Update (int Id, string Name, string IsoAlpha3, float GDP, int Population, string Region)
+        {
+            Country country = new Country (Name, IsoAlpha3, GDP, Population, Region);
+            country.Id = Id;
+            _ucUpdateCountry.Update(country);
             return RedirectToAction("Index");
         }
     }
