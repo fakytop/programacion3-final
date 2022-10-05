@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,7 +33,10 @@ namespace ApiApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
+            
+            services.AddDbContext<ObligatorioContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("production")));
+            
             services.AddScoped<IRepositoryCountry, RepositoryCountry>();
             services.AddScoped<IRead<Country>, ReadAllCountry>();
             services.AddScoped<ICreate<Country>, CreateCountry>();
