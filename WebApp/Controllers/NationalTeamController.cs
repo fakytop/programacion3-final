@@ -126,7 +126,7 @@ namespace WebApp.Controllers
             }
         }
 
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             _ucDeleteNationalTeam.Delete(new NationalTeam() { Id = id });
             return RedirectToAction("Index");
