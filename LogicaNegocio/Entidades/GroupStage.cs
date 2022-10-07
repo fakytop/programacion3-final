@@ -17,6 +17,17 @@ namespace LogicaNegocio.Entidades
             //validar todo 
         }
 
+        public void AddNationalTeam (NationalTeam nationalTeam)
+        {
+            
+            if (NationalTeams.Contains (nationalTeam))
+            {
+                 throw new Exception("No");
+            }
+            NationalTeams.Add(nationalTeam);
+            Validate();
+        }
+
         public void Update(GroupStage gs)
         {
             Group = gs.Group;

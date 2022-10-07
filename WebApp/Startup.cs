@@ -16,6 +16,8 @@ using LogicaAplicacion.UseCases.UCEntities.Countries;
 using LogicaAplicacion.UseCases.Interfaces;
 using LogicaNegocio.Entidades;
 using LogicaAplicacion.UseCases.UCEntities.NationalTeams;
+using LogicaAplicacion.UseCases.UCEntities.GroupsStage;
+using LogicaAplicacion.UseCases.UCDomain;
 
 namespace WebApp
 {
@@ -36,6 +38,8 @@ namespace WebApp
 
             services.AddControllersWithViews();
 
+            services.AddScoped<IAssign<GroupStage>, Assign>();
+
             services.AddScoped<IRepositoryCountry, RepositoryCountry>();
             services.AddScoped<IRead<Country>, ReadAllCountry>();
             services.AddScoped<ICreate<Country>, CreateCountry>();
@@ -47,6 +51,12 @@ namespace WebApp
             services.AddScoped<IRead<NationalTeam>, ReadAllNationalTeam>();
             services.AddScoped<IUpdate<NationalTeam>, UpdateNationalTeam>();
             services.AddScoped<IDelete<NationalTeam>, DeleteNationalTeam>();
+
+            services.AddScoped<IRepositoryGroupStage, RepositoryGroupStage>();
+            services.AddScoped<ICreate<GroupStage>, CreateGroupStage>();
+            services.AddScoped<IRead<GroupStage>, ReadAllGroupStage>();
+            services.AddScoped<IUpdate<GroupStage>, UpdateGroupStage>();
+            services.AddScoped<IDelete<GroupStage>, DeleteGroupStage>();
 
         }
 

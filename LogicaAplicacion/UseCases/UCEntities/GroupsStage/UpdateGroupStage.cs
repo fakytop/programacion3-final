@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 namespace LogicaAplicacion.UseCases.UCEntities.GroupsStage
 {
-    class UpdateGroupStage: IUpdate<GroupStage>
+    public class UpdateGroupStage: IUpdate<GroupStage>
     {
         private IRepositoryGroupStage _repo;
 

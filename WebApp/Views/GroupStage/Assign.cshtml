@@ -1,0 +1,25 @@
+﻿@model IEnumerable<LogicaNegocio.Entidades.GroupStage>
+
+@{
+    ViewData["Title"] = "Asignar";
+}
+
+<h1>Asignar una selección nacional a un grupo.</h1>
+
+<form asp-action="Assign" method="post">
+    <label></label>
+    <select name="groupID">
+        @foreach (var item in Model)
+        {
+            <option value="@item.Id">@item.Group.Value</option>
+        }
+    </select>
+    <label></label>
+    <select name="nationalTeamID">
+        @foreach (var item in ViewBag.NationalTeams)
+        {
+            <option value="@item.Id">@item.Country.Name.Value</option>
+        }
+    </select>
+    <input type="submit" value="Asignar" />
+</form>
