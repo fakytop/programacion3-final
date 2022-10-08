@@ -121,7 +121,7 @@ namespace ApiApp.Controllers
         }
 
         [HttpPut]
-        [Route("{groupID}/{nationalTeamID}")]
+        [Route("group/{groupID}/nationalteam/{nationalTeamID}")]
         public IActionResult Assign(int groupID, int nationalTeamID)
         {
             try
@@ -129,11 +129,16 @@ namespace ApiApp.Controllers
                 GroupStage group = _ucReadGroupStage.FindById(groupID);
                 NationalTeam national = _ucReadNationalTeam.FindById(nationalTeamID);
                 _ucAssign.AssignNationalTeam(group, national);
+
                 return Ok("salio todo bien");
             }
-            catch (Exception)
+            catch(DomainException e)
             {
-                return BadRequest("salio mal");
+                return BadRequest(e.Message);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
             }
         }
 

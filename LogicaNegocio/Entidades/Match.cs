@@ -9,9 +9,31 @@ namespace LogicaNegocio.Entidades
     public class Match: IEntity
     {
         public int Id { get; set; }
-        public NationalTeam Local { get; set; }
-        public NationalTeam Visita { get; set; }
+        public NationalTeam Home { get; set; }
+        public int? HomeId { get; set; }
+        public NationalTeam Away { get; set; }
+        public int? AwayId { get; set; }
+        public MatchResult MatchResult { get; set; }
+        public MatchDate MatchDate { get; set; }
 
-        //Verificar que no jueguen contra si mismo, no puede haber otro partido en esa fecha y horario. 
+        public Match()
+        {
+
+        }
+
+        public Match(NationalTeam home, NationalTeam away, MatchResult matchResult, MatchDate matchDate, int homeId, int awayId)
+        {
+            this.Home = home;
+            this.HomeId = homeId;
+            this.Away = away;
+            this.AwayId = awayId;
+            this.MatchResult = matchResult;
+            this.MatchDate = matchDate;
+        }
+
+        public void validate()
+        {
+            //Verificar que no jueguen contra si mismo, no puede haber otro partido en esa fecha y horario. 
+        }
     }
 }

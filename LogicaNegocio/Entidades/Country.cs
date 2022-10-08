@@ -16,6 +16,7 @@ namespace LogicaNegocio.Entidades
         public PositiveIntegerValue Population { get; set; }
         public string Image { get; set; } 
         public RegionValue Region { get; set; }
+        
         public Country ()
         {
 

@@ -30,8 +30,8 @@ namespace LogicaAccesoDatos.EF
             // y el objeto nuevo. y hacemos todo ahí. 
 
             //Los validate() están todos vacíos.
-            group.Validate();
             _db.Add(group);
+            group.Validate();
             _db.SaveChanges();
         }
 

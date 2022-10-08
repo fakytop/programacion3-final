@@ -1,4 +1,5 @@
-﻿using LogicaNegocio.InterfacesDominio;
+﻿using LogicaNegocio.Excepciones;
+using LogicaNegocio.InterfacesDominio;
 using LogicaNegocio.VO;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,11 @@ namespace LogicaNegocio.Entidades
 
         public void Validate()
         {
-            //validar todo 
+            if(NationalTeams.Count >= 4)
+            {
+                throw new DomainException("Can't be added.");
+            } 
+
         }
 
         public void AddNationalTeam (NationalTeam nationalTeam)
@@ -22,7 +27,7 @@ namespace LogicaNegocio.Entidades
             
             if (NationalTeams.Contains (nationalTeam))
             {
-                 throw new Exception("No");
+                 throw new DomainException("The National Team is already assigned.");
             }
             NationalTeams.Add(nationalTeam);
             Validate();

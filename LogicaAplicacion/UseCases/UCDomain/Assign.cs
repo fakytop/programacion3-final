@@ -1,5 +1,6 @@
 ﻿using LogicaAplicacion.UseCases.Interfaces;
 using LogicaNegocio.Entidades;
+using LogicaNegocio.Excepciones;
 using LogicaNegocio.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,9 @@ namespace LogicaAplicacion.UseCases.UCDomain
             {
                 groupStage.AddNationalTeam(nationalTeam);
                 _repository.Update(groupStage);
-            } catch (Exception e)
+            } catch (DomainException e)
             {
-                throw new Exception("Exception");
+                throw new DomainException(e.Message);
             }
         }
     }
