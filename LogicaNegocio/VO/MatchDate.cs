@@ -17,6 +17,7 @@ namespace LogicaNegocio.VO
         public void Validate()
         {
             //TODO: validar.
+            //hola
         }
     }
 }
