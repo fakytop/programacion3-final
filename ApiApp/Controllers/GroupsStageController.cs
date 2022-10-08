@@ -18,6 +18,8 @@ namespace ApiApp.Controllers
     {
         private IRead<GroupStage> _ucReadGroupStage;
         private ICreate<GroupStage> _ucCreateGroupStage;
+        private IUpdate<GroupStage> _ucUpdateGroupStage;
+        private IDelete<GroupStage> _ucDeleteGroupStage;
 
         private IRead<NationalTeam> _ucReadNationalTeam;
         private IAssign<GroupStage> _ucAssign;
@@ -26,12 +28,17 @@ namespace ApiApp.Controllers
             IRead<GroupStage> ucReadGroupStage,
             IRead<NationalTeam> ucReadNationalTeam,
             IAssign<GroupStage> ucAssign,
-            ICreate<GroupStage> ucCreateGroupStage)
+            ICreate<GroupStage> ucCreateGroupStage,
+            IUpdate<GroupStage> ucUpdateGroupStage,
+            IDelete<GroupStage> ucDeleteGroupStage
+            )
         {
             _ucReadGroupStage = ucReadGroupStage;
             _ucReadNationalTeam = ucReadNationalTeam;
             _ucAssign = ucAssign;
             _ucCreateGroupStage = ucCreateGroupStage;
+            _ucUpdateGroupStage = ucUpdateGroupStage;
+            _ucDeleteGroupStage = ucDeleteGroupStage;
         }
 
         public IActionResult GetAll()
@@ -61,6 +68,53 @@ namespace ApiApp.Controllers
                 return BadRequest(e.Message);
             }
             catch(Exception)
+            {
+                return StatusCode(500, "Something was wrong, try again later.");
+            }
+        }
+
+        [HttpPut]
+        public IActionResult Edit(GroupStageDto gsDto)
+        {
+            if(gsDto == null)
+            {
+                return BadRequest("No data was sent.");
+            }
+            try
+            {
+                GroupStage group = _ucReadGroupStage.FindById(gsDto.Id);
+                GroupStage gs = GroupStageMapper.ToGroupStage(gsDto);
+                gs.NationalTeams = group.NationalTeams;
+
+                _ucUpdateGroupStage.Update(gs);
+
+                return Ok(GroupStageMapper.FromGroupStage(gs));
+                //TODO: En Country devuelve null, hay que ver donde falta agregar el include.
+                // Devuelve todo el NationalTeam, deberíamos devolver el DTO.
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(e.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Something was wrong, try again later.");
+            }
+        }
+
+        [HttpDelete("{Id:int}")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                _ucDeleteGroupStage.Delete(new GroupStage() { Id = id });
+                return Ok("The Group was deleted.");
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(e.Message);
+            }
+            catch (Exception)
             {
                 return StatusCode(500, "Something was wrong, try again later.");
             }

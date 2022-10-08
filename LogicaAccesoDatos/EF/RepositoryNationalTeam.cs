@@ -33,11 +33,11 @@ namespace LogicaAccesoDatos.EF
                 _db.Add(obj);
                 _db.SaveChanges();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception($"Eror: {e.Message}");
             }
-            }
+        }
 
         public IEnumerable<NationalTeam> All()
         {
@@ -48,7 +48,7 @@ namespace LogicaAccesoDatos.EF
                     .OrderBy(nt => nt.Name.Value)
                     .ThenBy(nt => nt.Country.Name.Value);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception($"Error: {e.Message}");
             }
@@ -57,7 +57,7 @@ namespace LogicaAccesoDatos.EF
         public void Delete(int id)
         {
             NationalTeam nt = FindById(id);
-            if(nt == null)
+            if (nt == null)
             {
                 throw new InvalidCodeException("Can't find any National Team to delete.");
             }
@@ -66,7 +66,7 @@ namespace LogicaAccesoDatos.EF
                 _db.NationalTeams.Remove(nt);
                 _db.SaveChanges();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception($"Error: {e.Message}");
             }
@@ -75,7 +75,7 @@ namespace LogicaAccesoDatos.EF
         public void Update(NationalTeam obj)
         {
             NationalTeam nt = _db.NationalTeams.Find(obj.Id);
-            if(nt == null)
+            if (nt == null)
             {
                 throw new InvalidCodeException("Didn't find any National Team to update.");
             }
@@ -113,9 +113,7 @@ namespace LogicaAccesoDatos.EF
             {
                 throw new Exception($"Error: {e.Message}");
             }
-            
+
         }
-
-
     }
 }

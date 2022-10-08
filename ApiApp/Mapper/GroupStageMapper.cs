@@ -33,7 +33,9 @@ namespace ApiApp.Mapper
             return new GroupStageDto
             {
                 Id = gs.Id,
-                Group = gs.Group.Value
+                Group = gs.Group.Value,
+                NationalTeams = gs.NationalTeams
+            
             };
         }
 

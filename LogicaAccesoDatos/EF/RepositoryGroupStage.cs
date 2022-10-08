@@ -25,7 +25,11 @@ namespace LogicaAccesoDatos.EF
             {
                 throw new DomainException("Can't be added.");
             }
+            //TODO: Faltaría controlar que no se agregue la misma letra.
+            // Una posibilidad tener un IValidate que implementen todas las entidades, le pasamos la lista del context
+            // y el objeto nuevo. y hacemos todo ahí. 
 
+            //Los validate() están todos vacíos.
             group.Validate();
             _db.Add(group);
             _db.SaveChanges();
@@ -77,7 +81,7 @@ namespace LogicaAccesoDatos.EF
 
         public void Update(GroupStage obj)
         {
-            GroupStage gs = _db.GroupsStage.Find(obj.Id);
+            GroupStage gs = FindById(obj.Id);
             if (gs == null)
             {
                 throw new Exception("No existe el Grupo.");
