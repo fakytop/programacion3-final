@@ -1,4 +1,5 @@
 ﻿using LogicaNegocio.Entidades;
+using LogicaNegocio.Excepciones;
 using LogicaNegocio.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -19,6 +20,12 @@ namespace LogicaAccesoDatos.EF
 
         public void Add(GroupStage group)
         {
+            IEnumerable<GroupStage> gs = All();
+            if(gs.Count() >= 8)
+            {
+                throw new DomainException("Can't be added.");
+            }
+
             group.Validate();
             _db.Add(group);
             _db.SaveChanges();
