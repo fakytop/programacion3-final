@@ -16,6 +16,8 @@ namespace LogicaNegocio.Entidades
         public PhoneNumber Phone { get; set; }
         public EmailValue Email { get; set; }
         public PositiveIntegerValue Bettors { get; set; }
+        public GroupStage GroupStage { get; set; }
+        public int? GroupStageId { get; set; }
 
         public NationalTeam()
         {

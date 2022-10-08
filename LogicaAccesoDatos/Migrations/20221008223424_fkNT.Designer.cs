@@ -4,14 +4,16 @@ using LogicaAccesoDatos.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LogicaAccesoDatos.Migrations
 {
     [DbContext(typeof(ObligatorioContext))]
-    partial class ObligatorioContextModelSnapshot : ModelSnapshot
+    [Migration("20221008223424_fkNT")]
+    partial class fkNT
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,7 +105,7 @@ namespace LogicaAccesoDatos.Migrations
                     b.Property<int?>("CountryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("GroupStageId")
+                    b.Property<int>("GroupStageId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -442,7 +444,9 @@ namespace LogicaAccesoDatos.Migrations
 
                     b.HasOne("LogicaNegocio.Entidades.GroupStage", "GroupStage")
                         .WithMany("NationalTeams")
-                        .HasForeignKey("GroupStageId");
+                        .HasForeignKey("GroupStageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.OwnsOne("LogicaNegocio.VO.EmailValue", "Email", b1 =>
                         {

@@ -22,6 +22,11 @@ namespace LogicaAccesoDatos.EF
         {
             IEnumerable <Match> matches = All();
             
+            if(obj.Home.GroupStageId != obj.Away.GroupStageId)
+            {
+                throw new DomainException("Home and Away must be from the same group.");
+            }
+
             if(obj.Home == obj.Away)
             {
                 throw new DomainException("National Team can't play against itself.");
@@ -32,7 +37,7 @@ namespace LogicaAccesoDatos.EF
                 {
                     throw new DomainException("Match already exists.");
                 }
-                if(item.MatchDate == obj.MatchDate)
+                if(item.MatchDate.Value == obj.MatchDate.Value)
                 {
                     throw new DomainException("Match date already taken.");
                 }
