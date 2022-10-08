@@ -31,9 +31,9 @@ namespace LogicaNegocio.Entidades
             this.MatchDate = matchDate;
         }
 
-        public void validate()
+        public void Validate()
         {
-            //Verificar que no jueguen contra si mismo, no puede haber otro partido en esa fecha y horario. 
+
         }
     }
 }
