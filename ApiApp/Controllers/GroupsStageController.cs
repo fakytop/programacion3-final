@@ -120,5 +120,22 @@ namespace ApiApp.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("{groupID}/{nationalTeamID}")]
+        public IActionResult Assign(int groupID, int nationalTeamID)
+        {
+            try
+            {
+                GroupStage group = _ucReadGroupStage.FindById(groupID);
+                NationalTeam national = _ucReadNationalTeam.FindById(nationalTeamID);
+                _ucAssign.AssignNationalTeam(group, national);
+                return Ok("salio todo bien");
+            }
+            catch (Exception)
+            {
+                return BadRequest("salio mal");
+            }
+        }
+
     }
 }
