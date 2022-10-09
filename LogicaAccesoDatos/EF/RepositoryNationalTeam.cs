@@ -33,6 +33,10 @@ namespace LogicaAccesoDatos.EF
                 _db.Add(obj);
                 _db.SaveChanges();
             }
+            catch (DomainException e)
+            {
+                throw new DomainException(e.Message);
+            }
             catch (Exception e)
             {
                 throw new Exception($"Eror: {e.Message}");
@@ -48,6 +52,10 @@ namespace LogicaAccesoDatos.EF
                     .OrderBy(nt => nt.Name.Value)
                     .ThenBy(nt => nt.Country.Name.Value);
             }
+            catch (DomainException e)
+            {
+                throw new DomainException(e.Message);
+            }
             catch (Exception e)
             {
                 throw new Exception($"Error: {e.Message}");
@@ -59,12 +67,16 @@ namespace LogicaAccesoDatos.EF
             NationalTeam nt = FindById(id);
             if (nt == null)
             {
-                throw new InvalidCodeException("Can't find any National Team to delete.");
+                throw new DomainException("Can't find any National Team to delete.");
             }
             try
             {
                 _db.NationalTeams.Remove(nt);
                 _db.SaveChanges();
+            }
+            catch (DomainException e)
+            {
+                throw new DomainException(e.Message);
             }
             catch (Exception e)
             {
@@ -77,7 +89,7 @@ namespace LogicaAccesoDatos.EF
             NationalTeam nt = _db.NationalTeams.Find(obj.Id);
             if (nt == null)
             {
-                throw new InvalidCodeException("Didn't find any National Team to update.");
+                throw new DomainException("Didn't find any National Team to update.");
             }
 
             try
@@ -86,6 +98,10 @@ namespace LogicaAccesoDatos.EF
                 nt.Update(obj);
                 _db.NationalTeams.Update(nt);
                 _db.SaveChanges();
+            }
+            catch (DomainException e)
+            {
+                throw new DomainException(e.Message);
             }
             catch (Exception e)
             {
@@ -104,10 +120,14 @@ namespace LogicaAccesoDatos.EF
 
                 if (nt == null)
                 {
-                    throw new InvalidCodeException("Didn't find any National Team with that ID");
+                    throw new DomainException("Didn't find any National Team with that ID");
                 }
                 return nt;
 
+            }
+            catch (DomainException e)
+            {
+                throw new DomainException(e.Message);
             }
             catch (Exception e)
             {
