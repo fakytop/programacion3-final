@@ -20,6 +20,11 @@ namespace LogicaNegocio.Entidades
         public PositiveIntegerValue RedCardsA { get; set; }
         public PositiveIntegerValue DirectRedCardsH { get; set; }
         public PositiveIntegerValue DirectRedCardsA { get; set; }
+
+        public void Validate()
+        {
+            //TODO:
+        }
     }
 }
 

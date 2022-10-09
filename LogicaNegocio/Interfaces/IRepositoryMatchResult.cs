@@ -7,5 +7,6 @@ namespace LogicaNegocio.Interfaces
 {
     public interface IRepositoryMatchResult: IRepository<MatchResult>
     {
+        public MatchResult FindById(int id);
     }
 }

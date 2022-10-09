@@ -71,6 +71,29 @@ namespace LogicaAccesoDatos.EF
             }
         }
 
+        public Match FindById(int id)
+        {
+            try
+            {
+                Match m = _db.Match
+                    .Include(ntH => ntH.Home)
+                    .Include(ntA => ntA.Away)
+                    .Include(mr => mr.MatchResult)
+                    .FirstOrDefault(m => m.Id == id);
+
+                if(m == null)
+                {
+                    throw new DomainException("Didn't find any match.");
+                }
+
+                return m;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         public void Delete(int id)
         {
             throw new NotImplementedException();

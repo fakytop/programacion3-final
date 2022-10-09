@@ -32,5 +32,10 @@ namespace LogicaAccesoDatos.Memoria
         {
             throw new NotImplementedException();
         }
+
+        public MatchResult FindById(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
