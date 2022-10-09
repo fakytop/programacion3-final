@@ -9,7 +9,6 @@ namespace LogicaNegocio.Entidades
     public class MatchResult : IEntity
     {
         public int Id { get; set; }
-        public GroupStage Group { get; set; }
         public Match Match { get; set; }
         public int MatchId { get; set; }
         public PositiveIntegerValue GoalsH { get; set; }

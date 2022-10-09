@@ -42,7 +42,6 @@ namespace ApiApp.Controllers
             try
             {
                 MatchResult mr = MatchResultMapper.ToMatchResult(mrDto);
-                mr.Group = _ucReadGroupStage.FindById(mrDto.GroupId);
                 mr.Match = _ucReadMatch.FindById(mrDto.MatchId);
                 _ucCreateMatchResult.Create(mr);
 

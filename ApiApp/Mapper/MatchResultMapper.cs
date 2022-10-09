@@ -40,7 +40,6 @@ namespace ApiApp.Mapper
             return new MatchResultDto
             {
                 Id = mr.Id,
-                GroupId = mr.Group.Id,
                 MatchId = mr.Match.Id,
                 GoalsH = mr.GoalsH.Value,
                 GoalsA = mr.GoalsA.Value,

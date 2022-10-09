@@ -18,15 +18,18 @@ namespace ApiApp.Controllers
     {
         private ICreate<Match> _ucCreateMatch;
         private IRead<NationalTeam> _ucReadNationalTeam;
+        private IRead<Match> _ucReadMatch;
 
 
         public MatchController(
                 ICreate<Match> ucCreateMatch,
-                IRead<NationalTeam> ucReadNationalTeam
+                IRead<NationalTeam> ucReadNationalTeam,
+                IRead <Match> ucReadMatch
             )
         {
             _ucCreateMatch = ucCreateMatch;
             _ucReadNationalTeam = ucReadNationalTeam;
+            _ucReadMatch = ucReadMatch;
         }
 
         [HttpPost]
@@ -52,6 +55,16 @@ namespace ApiApp.Controllers
             {
                 return StatusCode(500, "Something was wrong, try again later.");
             }
+        }
+
+        [HttpPost]
+        public IActionResult GetGroupFixture (int groupId)
+        {
+            IEnumerable<Match> allMatches = _ucReadMatch.ReadAll();
+            IEnumerable<Match> matches = from m in allMatches
+                                         where m.GroupID == groupId
+                                         select m;
+            return Ok(matches);
         }
     }
 }

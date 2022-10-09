@@ -44,7 +44,6 @@ namespace LogicaAccesoDatos.EF
             try
             {
                 return _db.MatchResult
-                    .Include(mr => mr.Group)
                     .Include(mr => mr.Match)
                     .OrderBy(d => d.Match.MatchDate.Value);
             }

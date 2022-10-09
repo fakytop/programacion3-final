@@ -15,6 +15,8 @@ namespace LogicaNegocio.Entidades
         public int? AwayId { get; set; }
         public MatchResult MatchResult { get; set; }
         public MatchDate MatchDate { get; set; }
+        public GroupStage Group { get; set; }
+        public int GroupID { get; set; }
 
         public Match()
         {
