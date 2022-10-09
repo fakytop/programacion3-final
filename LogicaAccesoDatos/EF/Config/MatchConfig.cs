@@ -24,8 +24,9 @@ namespace LogicaAccesoDatos.EF.Config
             builder.OwnsOne(m => m.MatchDate)
                 .Property(d => d.Value)
                 .HasColumnName("Match_Date");
-
-
+            builder.HasOne(m => m.MatchResult)
+                .WithMany()
+                .HasForeignKey(m => m.MatchResultId);
         }
     }
 }

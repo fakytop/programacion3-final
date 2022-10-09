@@ -10,21 +10,21 @@ namespace LogicaAplicacion.UseCases.UCEntities.Matches
 {
     public class ReadMatch : IRead<Match>
     {
-        private IRepositoryMatch _db;
+        private IRepositoryMatch _repository;
 
-        public ReadMatch(IRepositoryMatch db)
+        public ReadMatch(IRepositoryMatch repository)
         {
-            _db = db;
+            _repository = repository;
         }
 
         public Match FindById(int id)
         {
-            return _db.FindById(id);
+            return _repository.FindById(id);
         }
 
         public IEnumerable<Match> ReadAll()
         {
-            throw new NotImplementedException();
+            return _repository.All();
         }
     }
 }

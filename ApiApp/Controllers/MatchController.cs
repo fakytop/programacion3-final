@@ -57,14 +57,14 @@ namespace ApiApp.Controllers
             }
         }
 
-        [HttpPost]
-        public IActionResult GetGroupFixture (int groupId)
+        [HttpGet ("{Id:int}")]
+        public IActionResult GetGroupFixture (int Id)
         {
             IEnumerable<Match> allMatches = _ucReadMatch.ReadAll();
             IEnumerable<Match> matches = from m in allMatches
-                                         where m.GroupID == groupId
+                                         where m.GroupID == Id
                                          select m;
-            return Ok(matches);
+            return Ok(MatchMapper.FromMatches(matches));
         }
     }
 }

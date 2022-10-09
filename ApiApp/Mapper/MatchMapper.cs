@@ -37,7 +37,8 @@ namespace ApiApp.Mapper
                 Id = m.Id,
                 HomeId = m.Home.Id,
                 AwayId = m.Away.Id,
-                MatchResultId = m.MatchResult.Id,
+                MatchResultId = m.MatchResultId,
+                MatchResultDto = MatchResultMapper.FromMatchResult(m.MatchResult),
                 MatchDate = m.MatchDate.Value
             };
         }
