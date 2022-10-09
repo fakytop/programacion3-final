@@ -21,11 +21,13 @@ namespace LogicaAccesoDatos.EF
 
         public void Add(NationalTeam obj)
         {
-            NationalTeam nt = _db.NationalTeams.Find(obj.Country.Id);
-            if (nt != null)
+            IEnumerable<NationalTeam> nts = All();
+            foreach (var item in nts)
             {
-                throw new DomainException("A National Team already exists.");
-
+                if(item.Country.Id == obj.Country.Id)
+                {
+                    throw new DomainException("A National Team already exists.");
+                }
             }
             try
             {
@@ -86,12 +88,7 @@ namespace LogicaAccesoDatos.EF
 
         public void Update(NationalTeam obj)
         {
-            NationalTeam nt = _db.NationalTeams.Find(obj.Id);
-            if (nt == null)
-            {
-                throw new DomainException("Didn't find any National Team to update.");
-            }
-
+            NationalTeam nt = FindById(obj.Id);
             try
             {
                 obj.Validate();

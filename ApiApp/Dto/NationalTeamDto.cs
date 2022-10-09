@@ -9,17 +9,19 @@ namespace ApiApp.Dto
     public class NationalTeamDto
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Can't be null.")]
+
         public int idCountry { get; set; }
         //public Country Country { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Can't be null.")]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Can't be null.")]
         public string Phone { get; set; }
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "Can't be null.")]
+        [EmailAddress(ErrorMessage ="Email is not valid.")]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Can't be null.")]
+        [Range(0, int.MaxValue,ErrorMessage = "Bettors must be positive.")]
         public int Bettors { get; set; }
     }
 }

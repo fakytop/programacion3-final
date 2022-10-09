@@ -55,7 +55,7 @@ namespace ApiApp.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500, "Hubo un error, intente en unos minutos.");
+                return StatusCode(500, "Something was wrong, try again later.");
             }
         }
 
@@ -66,7 +66,7 @@ namespace ApiApp.Controllers
             {
                 if(ntDto == null)
                 {
-                    return BadRequest("Los datos no fueron enviados.");
+                    return BadRequest("Data didn't send.");
                 }
                 NationalTeam nationalTeam = NationalTeamMapper.ToNationalTeam(ntDto);
                 nationalTeam.Country = _ucCountry.FindById(ntDto.idCountry);
@@ -80,7 +80,7 @@ namespace ApiApp.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500, "Hubo un error. Intente nuevamente en unos minutos.");
+                return StatusCode(500, "Something was wrong, try again later.");
             }
         }
         [HttpPut]
@@ -88,7 +88,7 @@ namespace ApiApp.Controllers
         {
             if (ntDto == null)
             {
-                return BadRequest("Los datos no fueron enviados.");
+                return BadRequest("Data didn't send.");
             }
             try
             {
@@ -103,7 +103,7 @@ namespace ApiApp.Controllers
             }
             catch(Exception)
             {
-                return StatusCode(500, "Oops, something was wrong, try again later.");
+                return StatusCode(500, "Something was wrong, try again later.");
             }
         }
         [HttpDelete("{Id:int}")]
@@ -112,7 +112,7 @@ namespace ApiApp.Controllers
             try
             {
                 _ucDeleteNationalTeam.Delete(new NationalTeam() { Id = id });
-                return Ok("The National Team was deleted.");
+                return Ok("National Team was deleted.");
             }
             catch (DomainException e)
             {

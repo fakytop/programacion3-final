@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using LogicaNegocio.Entidades;
+using LogicaNegocio.Excepciones;
 using LogicaNegocio.Interfaces;
 
 namespace LogicaAccesoDatos.EF
@@ -62,7 +63,7 @@ namespace LogicaAccesoDatos.EF
         
             if(country == null)
             {
-                throw new Exception("No se encontró país");
+                throw new DomainException("Country doesn't exists.");
             }
 
             return country;
