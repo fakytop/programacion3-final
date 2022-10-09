@@ -35,6 +35,12 @@ namespace LogicaAccesoDatos.EF.Config
             builder.OwnsOne(mr => mr.DirectRedCardsA)
                 .Property(rdca => rdca.Value)
                 .HasColumnName("Red_Direct_Card_Away");
+            builder.OwnsOne(mr => mr.PointsHome)
+                .Property(ph => ph.Value)
+                .HasColumnName("Points_Home");
+            builder.OwnsOne(mr => mr.PointsAway)
+                .Property(pa => pa.Value)
+                .HasColumnName("Points_Away");
         }
     }
 }

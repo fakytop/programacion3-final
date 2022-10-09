@@ -17,7 +17,9 @@ namespace ApiApp.Dto
         public int RedCardsH { get; set; }
         public int RedCardsA { get; set; }
         public int DirectRedCardsH { get; set; }
-        public int DIrectRedCardsA { get; set; }
+        public int DirectRedCardsA { get; set; }
+        public int PointsHome { get; set; }
+        public int PointsAway { get; set; }
 
     }
 }

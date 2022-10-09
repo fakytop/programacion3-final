@@ -16,18 +16,18 @@ namespace ApiApp.Mapper
             {
                 return null;
             }
-            return new MatchResult
-            {
-                Id = mrDto.Id,
-                GoalsH = new PositiveIntegerValue(mrDto.GoalsH),
-                GoalsA = new PositiveIntegerValue(mrDto.GoalsA),
-                YellowCardsH = new PositiveIntegerValue(mrDto.YellowCardsH),
-                YellowCardsA = new PositiveIntegerValue(mrDto.YellowCardsA),
-                RedCardsH = new PositiveIntegerValue(mrDto.RedCardsH),
-                RedCardsA = new PositiveIntegerValue(mrDto.RedCardsA),
-                DirectRedCardsH = new PositiveIntegerValue(mrDto.DirectRedCardsH),
-                DirectRedCardsA = new PositiveIntegerValue(mrDto.DIrectRedCardsA)
-            };
+
+            MatchResult mr = new MatchResult(
+                    new PositiveIntegerValue(mrDto.GoalsH),
+                    new PositiveIntegerValue(mrDto.GoalsA),
+                    new PositiveIntegerValue(mrDto.YellowCardsH),
+                    new PositiveIntegerValue(mrDto.YellowCardsA),
+                    new PositiveIntegerValue(mrDto.RedCardsH),
+                    new PositiveIntegerValue(mrDto.RedCardsA),
+                    new PositiveIntegerValue(mrDto.DirectRedCardsH),
+                    new PositiveIntegerValue(mrDto.DirectRedCardsA)
+                );
+            return mr;
         }
 
         public static MatchResultDto FromMatchResult(MatchResult mr)
@@ -49,7 +49,9 @@ namespace ApiApp.Mapper
                 RedCardsH = mr.RedCardsH.Value,
                 RedCardsA = mr.RedCardsA.Value,
                 DirectRedCardsH = mr.DirectRedCardsH.Value,
-                DIrectRedCardsA = mr.DirectRedCardsA.Value
+                DirectRedCardsA = mr.DirectRedCardsA.Value,
+                PointsHome = mr.PointsHome.Value,
+                PointsAway = mr.PointsAway.Value
             };
         }
 

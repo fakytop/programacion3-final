@@ -9,7 +9,7 @@ namespace LogicaNegocio.VO
 {
     public class EmailValue
     {
-
+        [EmailAddress]
         public string Value { get; private set; }
    
         public EmailValue (string value)
