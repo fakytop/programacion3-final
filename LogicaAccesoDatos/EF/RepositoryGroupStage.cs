@@ -23,13 +23,8 @@ namespace LogicaAccesoDatos.EF
             IEnumerable<GroupStage> gs = All();
             if(gs.Count() >= 8)
             {
-                throw new DomainException("Can't be added.");
+                throw new DomainException("There already 8 groups registered.");
             }
-            //TODO: Faltaría controlar que no se agregue la misma letra.
-            // Una posibilidad tener un IValidate que implementen todas las entidades, le pasamos la lista del context
-            // y el objeto nuevo. y hacemos todo ahí. 
-
-            //Los validate() están todos vacíos.
             _db.Add(group);
             group.Validate();
             _db.SaveChanges();
@@ -46,7 +41,7 @@ namespace LogicaAccesoDatos.EF
             }
             catch (Exception e)
             {
-                throw new Exception($"Error en FindAll: {e.Message}");
+                throw new Exception("Something went wrong, please try again later.");
             }
         }
         public void Delete(int id)
@@ -54,7 +49,7 @@ namespace LogicaAccesoDatos.EF
             GroupStage group = FindById(id);
             if (group == null)
             {
-                throw new Exception($"No existe el grupo con id {id}.");
+                throw new Exception($"Group stage does not exist.");
             }
             try
             {
@@ -63,7 +58,7 @@ namespace LogicaAccesoDatos.EF
             }
             catch (Exception e)
             {
-                throw new Exception($"Error en Remove {e.Message}");
+                throw new Exception("Something went wrong, please try again later.");
             }
         }
 
@@ -74,7 +69,7 @@ namespace LogicaAccesoDatos.EF
                 .FirstOrDefault(group => group.Id == id);
             if (group == null)
             {
-                throw new Exception("No se encontró " + id);
+                throw new Exception("Group stage does not exist.");
             }
             return group;
         }
@@ -84,7 +79,7 @@ namespace LogicaAccesoDatos.EF
             GroupStage gs = FindById(obj.Id);
             if (gs == null)
             {
-                throw new Exception("No existe el Grupo.");
+                throw new Exception("Group stage does not exist.");
             }
 
             try
@@ -97,7 +92,7 @@ namespace LogicaAccesoDatos.EF
             catch (Exception e)
             {
 
-                throw new Exception($"Error: {e.Message}");
+                throw new Exception("Something went wrong, please try again later.");
             }
         }
     }

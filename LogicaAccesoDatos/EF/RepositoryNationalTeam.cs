@@ -26,7 +26,7 @@ namespace LogicaAccesoDatos.EF
             {
                 if(item.Country.Id == obj.Country.Id)
                 {
-                    throw new DomainException("A National Team already exists.");
+                    throw new DomainException("National Team already exists.");
                 }
             }
             try
@@ -41,7 +41,7 @@ namespace LogicaAccesoDatos.EF
             }
             catch (Exception e)
             {
-                throw new Exception($"Eror: {e.Message}");
+                throw new Exception("Something went wrong, please try again later.");
             }
         }
 
@@ -60,7 +60,7 @@ namespace LogicaAccesoDatos.EF
             }
             catch (Exception e)
             {
-                throw new Exception($"Error: {e.Message}");
+                throw new Exception("Something went wrong, please try again later.");
             }
         }
 
@@ -69,7 +69,7 @@ namespace LogicaAccesoDatos.EF
             NationalTeam nt = FindById(id);
             if (nt == null)
             {
-                throw new DomainException("Can't find any National Team to delete.");
+                throw new DomainException("National Team does not exist.");
             }
             try
             {
@@ -82,7 +82,7 @@ namespace LogicaAccesoDatos.EF
             }
             catch (Exception e)
             {
-                throw new Exception($"Error: {e.Message}");
+                throw new Exception("Something went wrong, please try again later.");
             }
         }
 
@@ -103,7 +103,7 @@ namespace LogicaAccesoDatos.EF
             catch (Exception e)
             {
 
-                throw new Exception($"Error: {e.Message}");
+                throw new Exception("Something went wrong, please try again later.");
             }
         }
 
@@ -117,7 +117,7 @@ namespace LogicaAccesoDatos.EF
 
                 if (nt == null)
                 {
-                    throw new DomainException("Didn't find any National Team with that ID");
+                    throw new DomainException("National Team does not exist.");
                 }
                 return nt;
 
@@ -128,7 +128,7 @@ namespace LogicaAccesoDatos.EF
             }
             catch (Exception e)
             {
-                throw new Exception($"Error: {e.Message}");
+                throw new Exception("Something went wrong, please try again later.");
             }
 
         }

@@ -24,12 +24,12 @@ namespace LogicaAccesoDatos.EF
             
             if(obj.Home.GroupStageId != obj.Away.GroupStageId)
             {
-                throw new DomainException("Home and Away must be from the same group.");
+                throw new DomainException("Home and away must belong to the same group.");
             }
 
             if(obj.Home == obj.Away)
             {
-                throw new DomainException("National Team can't play against itself.");
+                throw new DomainException("National Team cannot play against itself.");
             }
             foreach (var item in matches)
             {
@@ -39,7 +39,7 @@ namespace LogicaAccesoDatos.EF
                 }
                 if(item.MatchDate.Value == obj.MatchDate.Value)
                 {
-                    throw new DomainException("Match date already taken.");
+                    throw new DomainException("Match date already scheduled.");
                 }
             }
 
@@ -52,7 +52,7 @@ namespace LogicaAccesoDatos.EF
             }
             catch (Exception e)
             {
-                throw new Exception($"Eror: {e.Message}");
+                throw new Exception("Something went wrong, please try again later.");
             }
         }
 
@@ -69,7 +69,7 @@ namespace LogicaAccesoDatos.EF
             }
             catch (Exception e)
             {
-                throw new Exception($"Error en FindAll: {e.Message}");
+                throw new Exception("Something went wrong, please try again later.");
             }
         }
 
@@ -85,14 +85,14 @@ namespace LogicaAccesoDatos.EF
 
                 if(m == null)
                 {
-                    throw new DomainException("Didn't find any match.");
+                    throw new DomainException("Match does not exist.");
                 }
 
                 return m;
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                throw new Exception("Something went wrong, please try again later.");
             }
         }
 

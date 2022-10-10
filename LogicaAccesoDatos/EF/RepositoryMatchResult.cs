@@ -24,7 +24,7 @@ namespace LogicaAccesoDatos.EF
 
             if(mr.Contains(obj))
             {
-                throw new DomainException("The match result already exists.");
+                throw new DomainException("Match result already registered.");
             }
 
             try
@@ -35,7 +35,7 @@ namespace LogicaAccesoDatos.EF
             }
             catch (Exception e)
             {
-                throw new Exception($"Eror: {e.Message}");
+                throw new Exception("Something went wrong, please try again later.");
             }
         }
 
@@ -49,7 +49,7 @@ namespace LogicaAccesoDatos.EF
             }
             catch (Exception e)
             {
-                throw new Exception($"Error en FindAll: {e.Message}");
+                throw new Exception("Something went wrong, please try again later.");
             }
         }
 
