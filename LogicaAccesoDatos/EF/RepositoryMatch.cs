@@ -64,6 +64,7 @@ namespace LogicaAccesoDatos.EF
                     .Include(th => th.Home)
                     .Include(ta => ta.Away)
                     .Include(m => m.MatchResult)
+                    .Include(m => m.Group)
                     .OrderBy(d => d.MatchDate.Value);
             }
             catch (Exception e)

@@ -24,7 +24,7 @@ namespace ApiApp.Controllers
         public MatchController(
                 ICreate<Match> ucCreateMatch,
                 IRead<NationalTeam> ucReadNationalTeam,
-                IRead <Match> ucReadMatch
+                IRead<Match> ucReadMatch
             )
         {
             _ucCreateMatch = ucCreateMatch;
@@ -35,7 +35,7 @@ namespace ApiApp.Controllers
         [HttpPost]
         public IActionResult Create(MatchDto mDto)
         {
-            if(mDto == null)
+            if (mDto == null)
             {
                 return BadRequest("Data didn't send.");
             }
@@ -51,18 +51,27 @@ namespace ApiApp.Controllers
             {
                 return BadRequest(e.Message);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return StatusCode(500, "Something was wrong, try again later.");
             }
         }
 
-        [HttpGet ("{Id:int}")]
-        public IActionResult GetGroupFixture (int Id)
+        [HttpGet("{Id:int}")]
+        public IActionResult GetGroupFixture(int Id)
         {
             IEnumerable<Match> allMatches = _ucReadMatch.ReadAll();
             IEnumerable<Match> matches = from m in allMatches
                                          where m.GroupID == Id
+                                         select m;
+            return Ok(MatchMapper.FromMatches(matches));
+        }
+        [HttpGet("ByGroupName/{Name}")]
+        public IActionResult GetGroupFixtureByName (string Name)
+        {
+            IEnumerable<Match> allMatches = _ucReadMatch.ReadAll();
+            IEnumerable<Match> matches = from m in allMatches
+                                         where m.Group.Group.Value == Name
                                          select m;
             return Ok(MatchMapper.FromMatches(matches));
         }
