@@ -32,5 +32,10 @@ namespace LogicaNegocio.VO
                 }
             }
         }
+
+        public override string ToString()
+        {
+            return Value;
+        }
     }
 }

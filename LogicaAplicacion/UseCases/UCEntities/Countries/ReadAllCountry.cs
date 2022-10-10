@@ -7,7 +7,7 @@ using LogicaNegocio.Interfaces;
 
 namespace LogicaAplicacion.UseCases.UCEntities.Countries
 {
-    public class ReadAllCountry : IRead <Country>
+    public class ReadAllCountry : IRead <Country>, IReadFilterCountry<Country>
     {
         private IRepositoryCountry _repository;
 
@@ -23,6 +23,14 @@ namespace LogicaAplicacion.UseCases.UCEntities.Countries
         public Country FindById(int id)
         {
             return _repository.FindById(id);
+        }
+        public Country FindByISO (string iso)
+        {
+            return _repository.FindByISO(iso);
+        }
+        public IEnumerable<Country> FindByRegion (string region)
+        {
+            return _repository.FindByRegion(region);
         }
     }
 }

@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LogicaNegocio.Entidades
 {
-    public class NationalTeam: IEntity
+    public class NationalTeam: IEntity, IValidate
     {
         public int Id { get; set; }
         public Country Country { get; set; }
@@ -36,7 +36,7 @@ namespace LogicaNegocio.Entidades
 
         public void Validate()
         {
-            //TODO: Validar que no haya otra selección con el mismo país al ingresarlo. 
+
         }
         public void Update(NationalTeam nt)
         {

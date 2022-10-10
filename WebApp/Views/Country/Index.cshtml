@@ -7,8 +7,26 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create new</a>
+    <a asp-action="Create">Dar alta a un país</a>
 </p>
+
+<div>
+    <form asp-controller="Country" asp-action="Index" method="post">
+        <label for="region">Buscar por región</label>
+        <input type="text" name="region" placeholder="Ingresa una región" />
+        <input type="submit" value="Buscar" />
+    </form>
+</div>
+
+<div>
+    <form asp-controller="Country" asp-action="FindByISO" method="post">
+        <label for="iso">Buscar por código ISO Alpha 3</label>
+        <input type="text" name="iso" placeholder="Ingresa un código ISO Alpha 3" />
+        <input type="submit" value="Buscar" />
+    </form>
+    <p>@ViewBag.Message</p>
+</div>
+
 <table class="table">
     <thead>
         <tr>

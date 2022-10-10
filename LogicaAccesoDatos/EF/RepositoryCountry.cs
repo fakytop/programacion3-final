@@ -10,34 +10,39 @@ namespace LogicaAccesoDatos.EF
 {
     public class RepositoryCountry : IRepositoryCountry
     {
-        private ObligatorioContext _db;
-        public RepositoryCountry (ObligatorioContext db)
+        private ObligatorioContext _repository;
+        public RepositoryCountry (ObligatorioContext repository)
         {
-            _db = db;
+            _repository = repository;
         }
         public void Add(Country country)
         {
-            country.validate();
-            _db.Add(country);
-            _db.SaveChanges();
+            country.Validate();
+            Country c = _repository.Countries.FirstOrDefault(co => co.Name.Value == country.Name.Value);
+            if (c != null)
+            {
+                throw new DomainException("Country already exists.");
+            }
+            _repository.Add(country);
+            _repository.SaveChanges();
         }
 
         public IEnumerable<Country> All()
         {
-            return _db.Countries;
+            return _repository.Countries;
         }
 
         public void Delete(int id)
         {
-            Country country = _db.Countries.FirstOrDefault(country => country.Id == id);
-            _db.Countries.Remove(country);
-            _db.SaveChanges();
+            Country country = _repository.Countries.FirstOrDefault(country => country.Id == id);
+            _repository.Countries.Remove(country);
+            _repository.SaveChanges();
 
         }
 
         public void Update(Country country)
         {
-            Country old = _db.Countries.Find(country.Id);
+            Country old = _repository.Countries.Find(country.Id);
 
             if (old == null)
             {
@@ -45,10 +50,10 @@ namespace LogicaAccesoDatos.EF
             }
             try
             {
-                country.validate();
+                country.Validate();
                 old.Update(country);
-                _db.Countries.Update(old);
-                _db.SaveChanges();
+                _repository.Countries.Update(old);
+                _repository.SaveChanges();
             } catch (Exception e)
             {
                 throw new Exception($"Error: {e.Message}");
@@ -58,7 +63,7 @@ namespace LogicaAccesoDatos.EF
 
         public Country FindById(int id)
         {
-            Country country = _db.Countries
+            Country country = _repository.Countries
                 .FirstOrDefault(country => country.Id == id);
         
             if(country == null)
@@ -67,6 +72,29 @@ namespace LogicaAccesoDatos.EF
             }
 
             return country;
+        }
+
+        public Country FindByISO (string iso)
+        {
+            Country country = _repository.Countries
+                .FirstOrDefault(c => c.IsoAlfa3.Value == iso);
+            if (country == null)
+            {
+                throw new DomainException("Country does not exists.");
+            }
+            return country;
+        }
+
+        public IEnumerable<Country> FindByRegion (string region)
+        {
+            IEnumerable<Country> countries = from c in _repository.Countries
+                                             where c.Region.Value == region
+                                             select c;
+            if (countries.Count () == 0)
+            {
+                throw new DomainException("No countries in the specified region.");
+            }
+            return countries;
         }
     }
 }

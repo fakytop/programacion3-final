@@ -15,19 +15,49 @@ namespace WebApp.Controllers
     {
         private ICreate<Country> _ucCreateCountry;
         private IRead<Country> _ucReadCountry;
+        private IReadFilterCountry<Country> _ucReadFilterCountry;
         private IUpdate<Country> _ucUpdateCountry;
         private IDelete<Country> _ucDeleteCountry;
 
-        public CountryController(ICreate<Country> ucCreateCountry, IRead<Country> ucReadCountries, IDelete<Country> ucDeleteCountry, IUpdate<Country> ucUpdateCountry)
+        public CountryController(ICreate<Country> ucCreateCountry, IRead<Country> ucReadCountries,IReadFilterCountry<Country> ucReadFilterCountry, IDelete<Country> ucDeleteCountry, IUpdate<Country> ucUpdateCountry)
         {
             _ucCreateCountry = ucCreateCountry;
             _ucReadCountry = ucReadCountries;
+            _ucReadFilterCountry = ucReadFilterCountry;
             _ucUpdateCountry = ucUpdateCountry;
             _ucDeleteCountry = ucDeleteCountry;
         }
         public IActionResult Index ()
         {
             return View(_ucReadCountry.ReadAll());
+        }
+        [HttpPost]
+        public IActionResult Index (string region)
+        {
+            ViewBag.Message = "";
+            try
+            {
+                return View(_ucReadFilterCountry.FindByRegion(region));
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View(_ucReadCountry.ReadAll());
+            } 
+        }
+        [HttpPost]
+        public IActionResult FindByISO (string iso)
+        {
+            List<Country> countries = new List<Country>();
+            try
+            {
+                countries.Add(_ucReadFilterCountry.FindByISO(iso));
+                return View("Index", countries);
+            } catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View("Index", _ucReadCountry.ReadAll());
+            }
         }
         public IActionResult Create()
         {
@@ -38,6 +68,7 @@ namespace WebApp.Controllers
         public IActionResult Create(Country country, string name, string isoalpha, float gdp, int population, string region)
         {
             ViewBag.Message = "";
+            Country c = country;
             try
             {
                 country.Name = new NameValue(name);
@@ -46,15 +77,14 @@ namespace WebApp.Controllers
                 country.Population = new PositiveIntegerValue(population);
                 country.Region = new RegionValue(region);
                 _ucCreateCountry.Create(country);
-                return View();
+                return RedirectToAction("Index");
 
             }
             catch (DomainException e)
             {
                 ViewBag.Message = e.Message;
             }
-
-            return View(country);
+            return View(c);
         }
         [HttpGet]
         public IActionResult Delete (int id)

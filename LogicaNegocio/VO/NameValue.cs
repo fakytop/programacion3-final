@@ -24,9 +24,13 @@ namespace LogicaNegocio.VO
             {
                 throw new InvalidNameException("Invalid name: name must not consist only of white-space characters.");
             }
+            if (Value[0] == ' ' || Value[Value.Length - 1] == ' ')
+            {
+                throw new InvalidNameException("Invalid name: name must not containt whitespaces at the beginning or the end.");
+            }
             foreach (var c in Value)
             {
-                if (!Char.IsLetter(c))
+                if (Char.IsDigit(c))
                 {
                     throw new InvalidNameException("Invalid name: name must only contain letters.");
                 }

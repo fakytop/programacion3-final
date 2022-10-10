@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LogicaNegocio.Entidades
 {
-    public class GroupStage: IEntity
+    public class GroupStage: IEntity, IValidate
     {
         public int Id { get; set; }
         public CodeValue Group { get; set; }

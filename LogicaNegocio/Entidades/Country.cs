@@ -7,7 +7,7 @@ using LogicaNegocio.Excepciones;
 
 namespace LogicaNegocio.Entidades
 {
-    public class Country: IEntity
+    public class Country: IEntity, IValidate
     {
         public int Id { get; set; }
         public NameValue Name { get; set; }
@@ -29,6 +29,7 @@ namespace LogicaNegocio.Entidades
             Population = new PositiveIntegerValue(population);
             Region = new RegionValue(region);
             Image = $"{IsoAlfa3.Value}.png";
+            Validate();
         }
         /*public override bool Equals(object obj)
         {
@@ -45,7 +46,7 @@ namespace LogicaNegocio.Entidades
             Image = updated.Image;
         }
 
-        public void validate()
+        public void Validate()
         {
             string nombre = Name.Value.ToUpper();
             string alfa3 = IsoAlfa3.Value.ToUpper();

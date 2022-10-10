@@ -18,7 +18,7 @@ namespace LogicaAccesoDatos.Memoria
             {
                 throw new DomainException("El país ya está registrado.");
             }
-            obj.validate();
+            obj.Validate();
             obj.Id = ultId++;
             paises.Add(obj);
 
@@ -40,6 +40,16 @@ namespace LogicaAccesoDatos.Memoria
         }
 
         public Country FindById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Country FindByISO(string iso)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Country> FindByRegion(string region)
         {
             throw new NotImplementedException();
         }
