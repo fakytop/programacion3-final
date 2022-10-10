@@ -37,7 +37,7 @@ namespace ApiApp.Controllers
         {
             if (mDto == null)
             {
-                return BadRequest("Data didn't send.");
+                return BadRequest("Server did not receive any data.");
             }
             try
             {
@@ -53,7 +53,7 @@ namespace ApiApp.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500, "Something was wrong, try again later.");
+                return StatusCode(500, "Something went wrong, please try again later.");
             }
         }
 

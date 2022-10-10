@@ -43,7 +43,6 @@ namespace ApiApp.Controllers
 
         public IActionResult GetAll()
         {
-            //return Ok(_ucReadGroupStage.ReadAll());
             return Ok(GroupStageMapper.FromGroupsStage(_ucReadGroupStage.ReadAll()));
         }
         
@@ -54,7 +53,7 @@ namespace ApiApp.Controllers
             {
                 if(gsDto == null)
                 {
-                    return BadRequest("Los datos no fueron enviados.");
+                    return BadRequest("Server did not receive any data.");
                 }
 
                 GroupStage group = GroupStageMapper.ToGroupStage(gsDto);
@@ -69,7 +68,7 @@ namespace ApiApp.Controllers
             }
             catch(Exception)
             {
-                return StatusCode(500, "Something was wrong, try again later.");
+                return StatusCode(500, "Something went wrong, please try again later.");
             }
         }
 
@@ -78,7 +77,7 @@ namespace ApiApp.Controllers
         {
             if(gsDto == null)
             {
-                return BadRequest("No data was sent.");
+                return BadRequest("Server did not receive any data.");
             }
             try
             {
@@ -89,8 +88,6 @@ namespace ApiApp.Controllers
                 _ucUpdateGroupStage.Update(gs);
 
                 return Ok(GroupStageMapper.FromGroupStage(gs));
-                //TODO: En Country devuelve null, hay que ver donde falta agregar el include.
-                // Devuelve todo el NationalTeam, deberíamos devolver el DTO.
             }
             catch (DomainException e)
             {
@@ -98,7 +95,7 @@ namespace ApiApp.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500, "Something was wrong, try again later.");
+                return StatusCode(500, "Something went wrong, please try again later.");
             }
         }
 
@@ -108,7 +105,7 @@ namespace ApiApp.Controllers
             try
             {
                 _ucDeleteGroupStage.Delete(new GroupStage() { Id = id });
-                return Ok("The Group was deleted.");
+                return Ok("Success.");
             }
             catch (DomainException e)
             {
@@ -116,7 +113,7 @@ namespace ApiApp.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500, "Something was wrong, try again later.");
+                return StatusCode(500, "Something went wrong, please try again later.");
             }
         }
 
@@ -130,7 +127,7 @@ namespace ApiApp.Controllers
                 NationalTeam national = _ucReadNationalTeam.FindById(nationalTeamID);
                 _ucAssign.AssignNationalTeam(group, national);
 
-                return Ok("salio todo bien");
+                return Ok("Success.");
             }
             catch(DomainException e)
             {

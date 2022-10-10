@@ -17,7 +17,6 @@ namespace ApiApp.Controllers
     public class MatchResultsController : ControllerBase
     {
         private ICreate<MatchResult> _ucCreateMatchResult;
-        private IRead<GroupStage> _ucReadGroupStage;
         private IRead<Match> _ucReadMatch;
 
         public MatchResultsController(
@@ -27,7 +26,6 @@ namespace ApiApp.Controllers
             )
         {
             _ucCreateMatchResult = ucCreateMatchResult;
-            _ucReadGroupStage = ucReadGroupStage;
             _ucReadMatch = ucReadMatch;
         }
 
@@ -36,7 +34,7 @@ namespace ApiApp.Controllers
         {
             if(mrDto == null)
             {
-                return BadRequest("Data didn't send.");
+                return BadRequest("Server dd not receive any data.");
             }
 
             try
@@ -53,12 +51,8 @@ namespace ApiApp.Controllers
             }
             catch(Exception)
             {
-                return StatusCode(500, "Something was wrong, try again later");
+                return StatusCode(500, "Something went wrong, please try again later");
             }
-
-
-
         } 
-
     }
 }
