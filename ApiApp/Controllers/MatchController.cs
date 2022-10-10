@@ -57,7 +57,7 @@ namespace ApiApp.Controllers
             }
         }
 
-        [HttpGet("{Id:int}")]
+        [HttpGet("ByGroupID/{Id:int}")]
         public IActionResult GetGroupFixture(int Id)
         {
             IEnumerable<Match> allMatches = _ucReadMatch.ReadAll();
