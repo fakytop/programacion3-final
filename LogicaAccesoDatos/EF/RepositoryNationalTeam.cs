@@ -67,6 +67,15 @@ namespace LogicaAccesoDatos.EF
         public void Delete(int id)
         {
             NationalTeam nt = FindById(id);
+            IEnumerable<Match> matches = from n in _db.Match
+                                         where n.AwayId == nt.Id || n.HomeId == nt.Id
+                                         select n;
+            if(matches.Count() > 0)
+            {
+                throw new DomainException("Can't be deleted, has asociated match games.");
+            }
+            
+            
             if (nt == null)
             {
                 throw new DomainException("Can't find any National Team to delete.");
