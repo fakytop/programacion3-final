@@ -23,5 +23,6 @@ namespace ApiApp.Dto
         [Required(ErrorMessage = "Can't be null.")]
         [Range(0, int.MaxValue,ErrorMessage = "Bettors must be positive.")]
         public int Bettors { get; set; }
+        public int? GroupId { get; set; }
     }
 }

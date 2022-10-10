@@ -44,7 +44,9 @@ namespace ApiApp.Mapper
                 Name = nt.Name.Value,
                 Phone = nt.Phone.Value,
                 Email = nt.Email.Value,
-                Bettors = nt.Bettors.Value
+                Bettors = nt.Bettors.Value,
+                GroupId = nt.GroupStageId
+                
             };
         }
 
