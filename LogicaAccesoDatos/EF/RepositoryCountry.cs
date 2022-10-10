@@ -35,6 +35,13 @@ namespace LogicaAccesoDatos.EF
         public void Delete(int id)
         {
             Country country = _repository.Countries.FirstOrDefault(country => country.Id == id);
+            IEnumerable<NationalTeam> nationalTeams = from n in _repository.NationalTeams
+                                                      where n.Country.Id == country.Id
+                                                      select n;
+            if (nationalTeams.Count () > 0)
+            {
+                throw new DomainException("Cannot delete country associated to National Team.");
+            }
             _repository.Countries.Remove(country);
             _repository.SaveChanges();
 

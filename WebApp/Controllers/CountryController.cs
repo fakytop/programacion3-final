@@ -89,9 +89,16 @@ namespace WebApp.Controllers
         [HttpGet]
         public IActionResult Delete (int id)
         {
+            ViewBag.Message = "";
             Country country = _ucReadCountry.FindById(id);
-            _ucDeleteCountry.Delete(country);
-            return RedirectToAction("Index");
+            try
+            {
+                _ucDeleteCountry.Delete(country);
+            } catch (DomainException de)
+            {
+                ViewBag.Message = de.Message;
+            }
+            return View("Index", _ucReadCountry.ReadAll());
         }
 
         [HttpGet]
