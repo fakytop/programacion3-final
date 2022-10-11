@@ -76,7 +76,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Country country, string name, string isoalpha, float gdp, int population, string region)
+        public IActionResult Create(Country country, string name, string isoalpha, float gdp, int population, string region, IFormFile image)
         {
             ViewBag.Message = "";
             Country c = country;
@@ -87,6 +87,8 @@ namespace WebApp.Controllers
                 country.GDP = new PositiveFloatValue (gdp);
                 country.Population = new PositiveIntegerValue(population);
                 country.Region = new RegionValue(region);
+                country.Image = isoalpha + ".png";
+                SaveFile(country, image);
                 _ucCreateCountry.Create(country);
                 return RedirectToAction("Index");
 
@@ -125,6 +127,24 @@ namespace WebApp.Controllers
             country.Id = Id;
             _ucUpdateCountry.Update(country);
             return RedirectToAction("Index");
+        }
+
+        public void SaveFile (Country country, IFormFile file)
+        {
+            string wwwrootPath = _environment.WebRootPath;
+            string fileName = country.IsoAlfa3.Value + ".png";
+            string filePath = Path.Combine(wwwrootPath, "img", "countries", fileName);
+            try
+            {
+                using (FileStream f = new FileStream(filePath, FileMode.Create))
+                {
+                    file.CopyTo(f);
+                }
+                country.Image = fileName;
+            } catch (Exception e)
+            {
+                throw new Exception("Something went wrong, please try again later.");
+            }
         }
     }
 }
