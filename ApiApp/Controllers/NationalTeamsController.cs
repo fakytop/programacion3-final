@@ -72,6 +72,8 @@ namespace ApiApp.Controllers
                 nationalTeam.Country = _ucCountry.FindById(ntDto.Country.Id);
                 _ucCreateNationalTeam.Create(nationalTeam);
 
+                ntDto.Country = CountryMapper.FromCountry(nationalTeam.Country);
+
                 return Ok(ntDto);
             }
             catch (DomainException de)
@@ -95,6 +97,9 @@ namespace ApiApp.Controllers
                 NationalTeam nt = NationalTeamMapper.ToNationalTeam(ntDto);
                 nt.Country = _ucCountry.FindById(ntDto.Country.Id);
                 _ucUpdateNationalTeam.Update(nt);
+
+                ntDto.Country = CountryMapper.FromCountry(nt.Country);
+
                 return Ok(ntDto);
             }
             catch (DomainException e)
