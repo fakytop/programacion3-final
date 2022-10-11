@@ -55,7 +55,7 @@ namespace ApiApp.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500, "Something was wrong, try again later.");
+                return StatusCode(500, "Something went wrong, please try again later.");
             }
         }
 
@@ -66,7 +66,7 @@ namespace ApiApp.Controllers
             {
                 if(ntDto == null)
                 {
-                    return BadRequest("Data didn't send.");
+                    return BadRequest("Server did not receive any data.");
                 }
                 NationalTeam nationalTeam = NationalTeamMapper.ToNationalTeam(ntDto);
                 nationalTeam.Country = _ucCountry.FindById(ntDto.Country.Id);
@@ -82,7 +82,7 @@ namespace ApiApp.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500, "Something was wrong, try again later.");
+                return StatusCode(500, "Something went wrong, please try again later.");
             }
         }
         [HttpPut]
@@ -90,7 +90,7 @@ namespace ApiApp.Controllers
         {
             if (ntDto == null)
             {
-                return BadRequest("Data didn't send.");
+                return BadRequest("Server did not receive any data.");
             }
             try
             {
@@ -108,7 +108,7 @@ namespace ApiApp.Controllers
             }
             catch(Exception)
             {
-                return StatusCode(500, "Something was wrong, try again later.");
+                return StatusCode(500, "Something went wrong, please try again later.");
             }
         }
         [HttpDelete("{Id:int}")]
@@ -117,7 +117,7 @@ namespace ApiApp.Controllers
             try
             {
                 _ucDeleteNationalTeam.Delete(new NationalTeam() { Id = id });
-                return Ok("National Team was deleted.");
+                return Ok("success.");
             }
             catch (DomainException e)
             {
@@ -125,7 +125,7 @@ namespace ApiApp.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500, "Oops, something was wrong, try again later.");
+                return StatusCode(500, "Something went wrong, please try again later.");
             }
         }
 

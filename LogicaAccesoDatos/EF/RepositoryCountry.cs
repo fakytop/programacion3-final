@@ -53,7 +53,7 @@ namespace LogicaAccesoDatos.EF
 
             if (old == null)
             {
-                throw new Exception("Didn't find any Country to update.");
+                throw new Exception("Country does not exist.");
             }
             try
             {
@@ -63,7 +63,7 @@ namespace LogicaAccesoDatos.EF
                 _repository.SaveChanges();
             } catch (Exception e)
             {
-                throw new Exception($"Error: {e.Message}");
+                throw new Exception("Something went wrong, please try again later.");
             }
 
         }
@@ -75,7 +75,7 @@ namespace LogicaAccesoDatos.EF
         
             if(country == null)
             {
-                throw new DomainException("Country doesn't exists.");
+                throw new DomainException("Country does not exist.");
             }
 
             return country;
@@ -87,7 +87,7 @@ namespace LogicaAccesoDatos.EF
                 .FirstOrDefault(c => c.IsoAlfa3.Value == iso);
             if (country == null)
             {
-                throw new DomainException("Country does not exists.");
+                throw new DomainException("Country does not exist.");
             }
             return country;
         }
@@ -99,7 +99,7 @@ namespace LogicaAccesoDatos.EF
                                              select c;
             if (countries.Count () == 0)
             {
-                throw new DomainException("No countries in the specified region.");
+                throw new DomainException("No countries for the specified region.");
             }
             return countries;
         }
