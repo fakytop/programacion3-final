@@ -63,7 +63,6 @@ namespace LogicaAccesoDatos.EF
                 return _db.Match
                     .Include(th => th.Home)
                     .Include(ta => ta.Away)
-                    .Include(m => m.MatchResult)
                     .Include(m => m.Group)
                     .OrderBy(d => d.MatchDate.Value);
             }
@@ -80,7 +79,6 @@ namespace LogicaAccesoDatos.EF
                 Match m = _db.Match
                     .Include(ntH => ntH.Home)
                     .Include(ntA => ntA.Away)
-                    .Include(mr => mr.MatchResult)
                     .FirstOrDefault(m => m.Id == id);
 
                 if(m == null)

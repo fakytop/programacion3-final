@@ -10,7 +10,6 @@ namespace ApiApp.Dto
         public int Id { get; set; }
         public int HomeId { get; set; }
         public int AwayId { get; set; }
-        public int? MatchResultId { get; set; }
         public MatchResultDto MatchResultDto { get; set; }
         public DateTime MatchDate { get; set; }
     }

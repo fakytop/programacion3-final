@@ -15,7 +15,6 @@ namespace LogicaAccesoDatos.EF
         public DbSet<NationalTeam> NationalTeams { get; set; }
         public DbSet<GroupStage> GroupsStage { get; set; }
         public DbSet<Match> Match { get; set; }
-        public DbSet<MatchResult> MatchResult { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,8 +24,6 @@ namespace LogicaAccesoDatos.EF
             modelBuilder.ApplyConfiguration(new NationalTeamConfig());
             modelBuilder.ApplyConfiguration(new GroupStageConfig());
             modelBuilder.ApplyConfiguration(new MatchConfig());
-            modelBuilder.ApplyConfiguration(new MatchResultConfig());
-
         }
     }
 }

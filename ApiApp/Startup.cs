@@ -4,7 +4,6 @@ using LogicaAplicacion.UseCases.UCDomain;
 using LogicaAplicacion.UseCases.UCEntities.Countries;
 using LogicaAplicacion.UseCases.UCEntities.GroupsStage;
 using LogicaAplicacion.UseCases.UCEntities.Matches;
-using LogicaAplicacion.UseCases.UCEntities.MatchResults;
 using LogicaAplicacion.UseCases.UCEntities.NationalTeams;
 using LogicaNegocio.Entidades;
 using LogicaNegocio.Interfaces;
@@ -64,8 +63,6 @@ namespace ApiApp
             services.AddScoped<ICreate<Match>, CreateMatch>();
             services.AddScoped<IRead<Match>, ReadMatch>();
 
-            services.AddScoped<IRepositoryMatchResult, RepositoryMatchResult>();
-            services.AddScoped<ICreate<MatchResult>, CreateMatchResult>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

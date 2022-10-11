@@ -32,13 +32,28 @@ namespace ApiApp.Mapper
                 return null;
             }
 
+            Match mr = new Match
+                {
+                    HomeStatistics = new Result(
+                        m.HomeStatistics.Goals,
+                        m.HomeStatistics.YellowCards,
+                        m.HomeStatistics.RedCards.Value,
+                        m.HomeStatistics.DirectRedCards
+                        ),
+                    AwayStatistics = new Result(
+                        m.AwayStatistics.Goals,
+                        m.AwayStatistics.YellowCards,
+                        m.AwayStatistics.RedCards,
+                        m.AwayStatistics.DirectRedCards
+                        )
+                };
+
             return new MatchDto
             {
                 Id = m.Id,
                 HomeId = m.Home.Id,
                 AwayId = m.Away.Id,
-                MatchResultId = m.MatchResultId,
-                MatchResultDto = MatchResultMapper.FromMatchResult(m.MatchResult),
+                MatchResultDto = MatchResultMapper.FromMatchResult(mr),
                 MatchDate = m.MatchDate.Value
             };
         }

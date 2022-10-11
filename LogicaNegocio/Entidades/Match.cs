@@ -13,8 +13,8 @@ namespace LogicaNegocio.Entidades
         public int? HomeId { get; set; }
         public NationalTeam Away { get; set; }
         public int? AwayId { get; set; }
-        public MatchResult MatchResult { get; set; }
-        public int? MatchResultId { get; set; }
+        public Result HomeStatistics { get; set; }
+        public Result AwayStatistics { get; set; }
         public MatchDate MatchDate { get; set; }
         public GroupStage Group { get; set; }
         public int GroupID { get; set; }
@@ -24,14 +24,14 @@ namespace LogicaNegocio.Entidades
 
         }
 
-        public Match(NationalTeam home, NationalTeam away, MatchResult matchResult, int MatchResultId, MatchDate matchDate, int homeId, int awayId)
+        public Match(NationalTeam home, NationalTeam away, Result pHomeStatistics, Result pAwayStatistics, MatchDate matchDate, int homeId, int awayId)
         {
             this.Home = home;
             this.HomeId = homeId;
             this.Away = away;
             this.AwayId = awayId;
-            this.MatchResult = matchResult;
-            this.MatchResultId = MatchResultId;
+            this.HomeStatistics = pHomeStatistics;
+            this.AwayStatistics = pAwayStatistics;
             this.MatchDate = matchDate;
         }
 

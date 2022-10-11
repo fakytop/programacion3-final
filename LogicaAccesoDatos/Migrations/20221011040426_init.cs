@@ -76,7 +76,16 @@ namespace LogicaAccesoDatos.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     HomeId = table.Column<int>(nullable: false),
                     AwayId = table.Column<int>(nullable: false),
-                    Match_Date = table.Column<DateTime>(nullable: true)
+                    Goals_Home = table.Column<int>(nullable: true),
+                    YellowCards_Home = table.Column<int>(nullable: true),
+                    RedCards_Home = table.Column<int>(nullable: true),
+                    Direct_RedCards_Home = table.Column<int>(nullable: true),
+                    Goals_Away = table.Column<int>(nullable: true),
+                    YellowCards_Away = table.Column<int>(nullable: true),
+                    RedCards_Away = table.Column<int>(nullable: true),
+                    Direct_RedCards_Away = table.Column<int>(nullable: true),
+                    Match_Date = table.Column<DateTime>(nullable: true),
+                    GroupID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -87,44 +96,16 @@ namespace LogicaAccesoDatos.Migrations
                         principalTable: "NationalTeams",
                         principalColumn: "Id");
                     table.ForeignKey(
+                        name: "FK_Match_GroupsStage_GroupID",
+                        column: x => x.GroupID,
+                        principalTable: "GroupsStage",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Match_NationalTeams_HomeId",
                         column: x => x.HomeId,
                         principalTable: "NationalTeams",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MatchResult",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    GroupId = table.Column<int>(nullable: true),
-                    MatchId = table.Column<int>(nullable: false),
-                    Goals_Home = table.Column<int>(nullable: true),
-                    Goals_Away = table.Column<int>(nullable: true),
-                    Yellow_Cards_Home = table.Column<int>(nullable: true),
-                    Yellow_Cards_Away = table.Column<int>(nullable: true),
-                    Red_Cards_Home = table.Column<int>(nullable: true),
-                    Red_Cards_Away = table.Column<int>(nullable: true),
-                    Red_Direct_Card_Home = table.Column<int>(nullable: true),
-                    Red_Direct_Card_Away = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MatchResult", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MatchResult_GroupsStage_GroupId",
-                        column: x => x.GroupId,
-                        principalTable: "GroupsStage",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_MatchResult_Match_MatchId",
-                        column: x => x.MatchId,
-                        principalTable: "Match",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -133,20 +114,14 @@ namespace LogicaAccesoDatos.Migrations
                 column: "AwayId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Match_GroupID",
+                table: "Match",
+                column: "GroupID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Match_HomeId",
                 table: "Match",
                 column: "HomeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MatchResult_GroupId",
-                table: "MatchResult",
-                column: "GroupId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MatchResult_MatchId",
-                table: "MatchResult",
-                column: "MatchId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_NationalTeams_CountryId",
@@ -161,9 +136,6 @@ namespace LogicaAccesoDatos.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "MatchResult");
-
             migrationBuilder.DropTable(
                 name: "Match");
 

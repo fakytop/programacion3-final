@@ -24,9 +24,39 @@ namespace LogicaAccesoDatos.EF.Config
             builder.OwnsOne(m => m.MatchDate)
                 .Property(d => d.Value)
                 .HasColumnName("Match_Date");
-            builder.HasOne(m => m.MatchResult)
-                .WithMany()
-                .HasForeignKey(m => m.MatchResultId);
+            //Statistics Home
+            builder.OwnsOne(m => m.HomeStatistics)
+                .Property(g => g.Goals)
+                .HasColumnName("Goals_Home");
+            builder.OwnsOne(m => m.HomeStatistics)
+                .Property(yc => yc.YellowCards)
+                .HasColumnName("YellowCards_Home");
+            builder.OwnsOne(m => m.HomeStatistics)
+                .Property(rc => rc.RedCards)
+                .HasColumnName("RedCards_Home");
+            builder.OwnsOne(m => m.HomeStatistics)
+                .Property(drc => drc.DirectRedCards)
+                .HasColumnName("Direct_RedCards_Home");
+            
+            //Statistics Away
+            builder.OwnsOne(m => m.AwayStatistics)
+                .Property(g => g.Goals)
+                .HasColumnName("Goals_Away");
+            builder.OwnsOne(m => m.AwayStatistics)
+                .Property(yc => yc.YellowCards)
+                .HasColumnName("YellowCards_Away");
+            builder.OwnsOne(m => m.AwayStatistics)
+                .Property(rc => rc.RedCards)
+                .HasColumnName("RedCards_Away");
+            builder.OwnsOne(m => m.AwayStatistics)
+                .Property(drc => drc.DirectRedCards)
+                .HasColumnName("Direct_RedCards_Away");
+
+
+
+            //builder.HasOne(m => m.MatchResult)
+            //    .WithMany()
+            //    .HasForeignKey(m => m.MatchResultId);
         }
     }
 }

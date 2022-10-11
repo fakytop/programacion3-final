@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LogicaAccesoDatos.Migrations
 {
     [DbContext(typeof(ObligatorioContext))]
-    [Migration("20221009215534_add-groupID-to-match")]
-    partial class addgroupIDtomatch
+    [Migration("20221011043640_initDos")]
+    partial class initDos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -75,29 +75,6 @@ namespace LogicaAccesoDatos.Migrations
                     b.HasIndex("HomeId");
 
                     b.ToTable("Match");
-                });
-
-            modelBuilder.Entity("LogicaNegocio.Entidades.MatchResult", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("GroupId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MatchId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("MatchId")
-                        .IsUnique();
-
-                    b.ToTable("MatchResult");
                 });
 
             modelBuilder.Entity("LogicaNegocio.Entidades.NationalTeam", b =>
@@ -280,208 +257,67 @@ namespace LogicaAccesoDatos.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("MatchId");
                         });
-                });
 
-            modelBuilder.Entity("LogicaNegocio.Entidades.MatchResult", b =>
-                {
-                    b.HasOne("LogicaNegocio.Entidades.GroupStage", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId");
-
-                    b.HasOne("LogicaNegocio.Entidades.Match", "Match")
-                        .WithOne("MatchResult")
-                        .HasForeignKey("LogicaNegocio.Entidades.MatchResult", "MatchId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.OwnsOne("LogicaNegocio.VO.PositiveIntegerValue", "DirectRedCardsA", b1 =>
+                    b.OwnsOne("LogicaNegocio.VO.Result", "AwayStatistics", b1 =>
                         {
-                            b1.Property<int>("MatchResultId")
+                            b1.Property<int>("MatchId")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                            b1.Property<int>("Value")
-                                .HasColumnName("Red_Direct_Card_Away")
+                            b1.Property<int?>("DirectRedCards")
+                                .HasColumnName("Direct_RedCards_Away")
                                 .HasColumnType("int");
 
-                            b1.HasKey("MatchResultId");
-
-                            b1.ToTable("MatchResult");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MatchResultId");
-                        });
-
-                    b.OwnsOne("LogicaNegocio.VO.PositiveIntegerValue", "DirectRedCardsH", b1 =>
-                        {
-                            b1.Property<int>("MatchResultId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                            b1.Property<int>("Value")
-                                .HasColumnName("Red_Direct_Card_Home")
-                                .HasColumnType("int");
-
-                            b1.HasKey("MatchResultId");
-
-                            b1.ToTable("MatchResult");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MatchResultId");
-                        });
-
-                    b.OwnsOne("LogicaNegocio.VO.PositiveIntegerValue", "GoalsA", b1 =>
-                        {
-                            b1.Property<int>("MatchResultId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                            b1.Property<int>("Value")
+                            b1.Property<int?>("Goals")
                                 .HasColumnName("Goals_Away")
                                 .HasColumnType("int");
 
-                            b1.HasKey("MatchResultId");
+                            b1.Property<int?>("RedCards")
+                                .HasColumnName("RedCards_Away")
+                                .HasColumnType("int");
 
-                            b1.ToTable("MatchResult");
+                            b1.Property<int?>("YellowCards")
+                                .HasColumnName("YellowCards_Away")
+                                .HasColumnType("int");
+
+                            b1.HasKey("MatchId");
+
+                            b1.ToTable("Match");
 
                             b1.WithOwner()
-                                .HasForeignKey("MatchResultId");
+                                .HasForeignKey("MatchId");
                         });
 
-                    b.OwnsOne("LogicaNegocio.VO.PositiveIntegerValue", "GoalsH", b1 =>
+                    b.OwnsOne("LogicaNegocio.VO.Result", "HomeStatistics", b1 =>
                         {
-                            b1.Property<int>("MatchResultId")
+                            b1.Property<int>("MatchId")
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                            b1.Property<int>("Value")
+                            b1.Property<int?>("DirectRedCards")
+                                .HasColumnName("Direct_RedCards_Home")
+                                .HasColumnType("int");
+
+                            b1.Property<int?>("Goals")
                                 .HasColumnName("Goals_Home")
                                 .HasColumnType("int");
 
-                            b1.HasKey("MatchResultId");
-
-                            b1.ToTable("MatchResult");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MatchResultId");
-                        });
-
-                    b.OwnsOne("LogicaNegocio.VO.PositiveIntegerValue", "PointsAway", b1 =>
-                        {
-                            b1.Property<int>("MatchResultId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                            b1.Property<int>("Value")
-                                .HasColumnName("Points_Away")
+                            b1.Property<int?>("RedCards")
+                                .HasColumnName("RedCards_Home")
                                 .HasColumnType("int");
 
-                            b1.HasKey("MatchResultId");
-
-                            b1.ToTable("MatchResult");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MatchResultId");
-                        });
-
-                    b.OwnsOne("LogicaNegocio.VO.PositiveIntegerValue", "PointsHome", b1 =>
-                        {
-                            b1.Property<int>("MatchResultId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                            b1.Property<int>("Value")
-                                .HasColumnName("Points_Home")
+                            b1.Property<int?>("YellowCards")
+                                .HasColumnName("YellowCards_Home")
                                 .HasColumnType("int");
 
-                            b1.HasKey("MatchResultId");
+                            b1.HasKey("MatchId");
 
-                            b1.ToTable("MatchResult");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MatchResultId");
-                        });
-
-                    b.OwnsOne("LogicaNegocio.VO.PositiveIntegerValue", "RedCardsA", b1 =>
-                        {
-                            b1.Property<int>("MatchResultId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                            b1.Property<int>("Value")
-                                .HasColumnName("Red_Cards_Away")
-                                .HasColumnType("int");
-
-                            b1.HasKey("MatchResultId");
-
-                            b1.ToTable("MatchResult");
+                            b1.ToTable("Match");
 
                             b1.WithOwner()
-                                .HasForeignKey("MatchResultId");
-                        });
-
-                    b.OwnsOne("LogicaNegocio.VO.PositiveIntegerValue", "RedCardsH", b1 =>
-                        {
-                            b1.Property<int>("MatchResultId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                            b1.Property<int>("Value")
-                                .HasColumnName("Red_Cards_Home")
-                                .HasColumnType("int");
-
-                            b1.HasKey("MatchResultId");
-
-                            b1.ToTable("MatchResult");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MatchResultId");
-                        });
-
-                    b.OwnsOne("LogicaNegocio.VO.PositiveIntegerValue", "YellowCardsA", b1 =>
-                        {
-                            b1.Property<int>("MatchResultId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                            b1.Property<int>("Value")
-                                .HasColumnName("Yellow_Cards_Away")
-                                .HasColumnType("int");
-
-                            b1.HasKey("MatchResultId");
-
-                            b1.ToTable("MatchResult");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MatchResultId");
-                        });
-
-                    b.OwnsOne("LogicaNegocio.VO.PositiveIntegerValue", "YellowCardsH", b1 =>
-                        {
-                            b1.Property<int>("MatchResultId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                            b1.Property<int>("Value")
-                                .HasColumnName("Yellow_Cards_Home")
-                                .HasColumnType("int");
-
-                            b1.HasKey("MatchResultId");
-
-                            b1.ToTable("MatchResult");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MatchResultId");
+                                .HasForeignKey("MatchId");
                         });
                 });
 
