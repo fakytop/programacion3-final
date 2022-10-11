@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +22,21 @@ namespace WebApp.Controllers
         private IUpdate<Country> _ucUpdateCountry;
         private IDelete<Country> _ucDeleteCountry;
 
-        public CountryController(ICreate<Country> ucCreateCountry, IRead<Country> ucReadCountries,IReadFilterCountry<Country> ucReadFilterCountry, IDelete<Country> ucDeleteCountry, IUpdate<Country> ucUpdateCountry)
+        private IWebHostEnvironment _environment;
+
+        public CountryController(ICreate<Country> ucCreateCountry,
+            IRead<Country> ucReadCountries,
+            IReadFilterCountry<Country> ucReadFilterCountry, 
+            IDelete<Country> ucDeleteCountry,
+            IUpdate<Country> ucUpdateCountry,
+            IWebHostEnvironment environment)
         {
             _ucCreateCountry = ucCreateCountry;
             _ucReadCountry = ucReadCountries;
             _ucReadFilterCountry = ucReadFilterCountry;
             _ucUpdateCountry = ucUpdateCountry;
             _ucDeleteCountry = ucDeleteCountry;
+            _environment = environment;
         }
         public IActionResult Index ()
         {
