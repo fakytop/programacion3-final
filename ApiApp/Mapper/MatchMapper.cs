@@ -31,31 +31,31 @@ namespace ApiApp.Mapper
             {
                 return null;
             }
-
-            Match mr = new Match
-                {
-                    HomeStatistics = new Result(
+            Match mr = new Match();
+            MatchDto mDto = new MatchDto();
+            if (m.HomeStatistics != null || m.AwayStatistics != null)
+            {
+                mr.HomeStatistics = new Result(
                         m.HomeStatistics.Goals,
                         m.HomeStatistics.YellowCards,
-                        m.HomeStatistics.RedCards.Value,
+                        m.HomeStatistics.RedCards,
                         m.HomeStatistics.DirectRedCards
-                        ),
-                    AwayStatistics = new Result(
+                        );
+                mr.AwayStatistics = new Result(
                         m.AwayStatistics.Goals,
                         m.AwayStatistics.YellowCards,
                         m.AwayStatistics.RedCards,
                         m.AwayStatistics.DirectRedCards
-                        )
-                };
+                        );
+                mDto.MatchResultDto = MatchResultMapper.FromMatchResult(mr);
+            }
+            mDto.Id = m.Id;
+            mDto.HomeId = m.Home.Id;
+            mDto.AwayId = m.Away.Id;
+            mDto.MatchDate = m.MatchDate.Value;
 
-            return new MatchDto
-            {
-                Id = m.Id,
-                HomeId = m.Home.Id,
-                AwayId = m.Away.Id,
-                MatchResultDto = MatchResultMapper.FromMatchResult(mr),
-                MatchDate = m.MatchDate.Value
-            };
+            return mDto;
+            
         }
 
         public static IEnumerable<MatchDto> FromMatches(IEnumerable<Match> matches)
