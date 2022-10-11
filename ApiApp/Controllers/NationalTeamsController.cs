@@ -69,7 +69,7 @@ namespace ApiApp.Controllers
                     return BadRequest("Data didn't send.");
                 }
                 NationalTeam nationalTeam = NationalTeamMapper.ToNationalTeam(ntDto);
-                nationalTeam.Country = _ucCountry.FindById(ntDto.idCountry);
+                nationalTeam.Country = _ucCountry.FindById(ntDto.Country.Id);
                 _ucCreateNationalTeam.Create(nationalTeam);
 
                 return Ok(ntDto);
@@ -93,7 +93,7 @@ namespace ApiApp.Controllers
             try
             {
                 NationalTeam nt = NationalTeamMapper.ToNationalTeam(ntDto);
-                nt.Country = _ucCountry.FindById(ntDto.idCountry);
+                nt.Country = _ucCountry.FindById(ntDto.Country.Id);
                 _ucUpdateNationalTeam.Update(nt);
                 return Ok(ntDto);
             }

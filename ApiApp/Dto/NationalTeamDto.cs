@@ -11,8 +11,8 @@ namespace ApiApp.Dto
         public int Id { get; set; }
         [Required(ErrorMessage = "Can't be null.")]
 
-        public int idCountry { get; set; }
-        //public Country Country { get; set; }
+        //public int idCountry { get; set; }
+        public CountryDto Country { get; set; }
         [Required(ErrorMessage = "Can't be null.")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Can't be null.")]
