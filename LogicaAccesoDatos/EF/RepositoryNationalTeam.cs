@@ -51,7 +51,7 @@ namespace LogicaAccesoDatos.EF
             {
                 return _db.NationalTeams
                     .Include(c => c.Country)
-                    .OrderBy(nt => nt.Name.Value)
+                    .OrderBy(nt => nt.Country.Name.Value)
                     .ThenBy(nt => nt.Country.Name.Value);
             }
             catch (DomainException e)
