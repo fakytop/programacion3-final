@@ -48,14 +48,23 @@ namespace LogicaAccesoDatos.EF
         }
         public void Delete(int id)
         {
-            GroupStage group = FindById(id);
-            if (group == null)
+            GroupStage gs = FindById(id);
+
+            IEnumerable<NationalTeam> nts = from nt in _db.NationalTeams
+                                            where nt.GroupStage.Id == gs.Id
+                                            select nt;
+            if(nts.Count() > 0)
+            {
+                throw new DomainException("Can't be deleted, has asociated National Teams.");
+            }
+
+            if (gs == null)
             {
                 throw new Exception($"Group stage does not exist.");
             }
             try
             {
-                _db.GroupsStage.Remove(group);
+                _db.GroupsStage.Remove(gs);
                 _db.SaveChanges();
             }
             catch (Exception e)
