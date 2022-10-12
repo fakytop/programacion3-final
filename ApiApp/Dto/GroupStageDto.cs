@@ -10,7 +10,7 @@ namespace ApiApp.Dto
     {
         public int Id { get; set; }
         public string Group { get; set; }
-        public IEnumerable<NationalTeam> NationalTeams { get; set; }
+        public IEnumerable<NationalTeamDto> NationalTeams { get; set; }
 
     }
 }

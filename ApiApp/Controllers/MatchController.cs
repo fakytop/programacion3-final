@@ -73,6 +73,12 @@ namespace ApiApp.Controllers
             IEnumerable<Match> matches = from m in allMatches
                                          where m.Group.Group.Value == Name
                                          select m;
+
+            if(matches.Count() == 0)
+            {
+                return BadRequest("Group stage does not exists.");
+            }
+
             return Ok(MatchMapper.FromMatches(matches));
         }
     }

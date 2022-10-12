@@ -34,7 +34,7 @@ namespace ApiApp.Mapper
             {
                 Id = gs.Id,
                 Group = gs.Group.Value,
-                NationalTeams = gs.NationalTeams
+                NationalTeams = NationalTeamMapper.FromNationalTeams(gs.NationalTeams)
             
             };
         }
