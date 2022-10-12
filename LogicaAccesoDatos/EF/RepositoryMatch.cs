@@ -47,6 +47,7 @@ namespace LogicaAccesoDatos.EF
             try
             {
                 obj.Validate();
+                obj.GroupID = (int)obj.Home.GroupStageId;
                 _db.Add(obj);
                 _db.SaveChanges();
             }

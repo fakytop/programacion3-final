@@ -18,6 +18,7 @@ namespace LogicaAccesoDatos.EF
             _db = db;
         }
 
+        
         public void Add(GroupStage group)
         {
             IEnumerable<GroupStage> gs = All();
@@ -36,10 +37,11 @@ namespace LogicaAccesoDatos.EF
             {
                 return _db.GroupsStage
                     .Include(gs => gs.NationalTeams)
+                    .ThenInclude(c => c.Country)
                     .OrderBy(gs => gs.Group.Value)
                     .ThenBy(gs => gs.Group.Value);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new Exception("Something went wrong, please try again later.");
             }

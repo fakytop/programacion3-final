@@ -15,6 +15,10 @@ namespace LogicaNegocio.Entidades
 
         public void Validate()
         {
+            if(NationalTeams == null)
+            {
+                NationalTeams = new List<NationalTeam>();
+            }
             if(NationalTeams.Count >= 4)
             {
                 throw new DomainException("Can't be added.");

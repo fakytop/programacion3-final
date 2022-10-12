@@ -4,14 +4,16 @@ using LogicaAccesoDatos.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LogicaAccesoDatos.Migrations
 {
     [DbContext(typeof(ObligatorioContext))]
-    partial class ObligatorioContextModelSnapshot : ModelSnapshot
+    [Migration("20221012023713_mr-m1")]
+    partial class mrm1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,9 +66,6 @@ namespace LogicaAccesoDatos.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int?>("MatchResultId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AwayId");
@@ -74,10 +73,6 @@ namespace LogicaAccesoDatos.Migrations
                     b.HasIndex("GroupID");
 
                     b.HasIndex("HomeId");
-
-                    b.HasIndex("MatchResultId")
-                        .IsUnique()
-                        .HasFilter("[MatchResultId] IS NOT NULL");
 
                     b.ToTable("Match");
                 });
@@ -89,7 +84,13 @@ namespace LogicaAccesoDatos.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("MatchId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("MatchId")
+                        .IsUnique();
 
                     b.ToTable("MatchResult");
                 });
@@ -256,10 +257,6 @@ namespace LogicaAccesoDatos.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("LogicaNegocio.Entidades.MatchResult", "MatchResult")
-                        .WithOne("Match")
-                        .HasForeignKey("LogicaNegocio.Entidades.Match", "MatchResultId");
-
                     b.OwnsOne("LogicaNegocio.VO.MatchDate", "MatchDate", b1 =>
                         {
                             b1.Property<int>("MatchId")
@@ -282,6 +279,12 @@ namespace LogicaAccesoDatos.Migrations
 
             modelBuilder.Entity("LogicaNegocio.Entidades.MatchResult", b =>
                 {
+                    b.HasOne("LogicaNegocio.Entidades.Match", "Match")
+                        .WithOne("MatchResult")
+                        .HasForeignKey("LogicaNegocio.Entidades.MatchResult", "MatchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.OwnsOne("LogicaNegocio.VO.PositiveIntegerValue", "DirectRedCardsA", b1 =>
                         {
                             b1.Property<int>("MatchResultId")

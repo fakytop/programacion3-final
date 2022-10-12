@@ -4,14 +4,16 @@ using LogicaAccesoDatos.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LogicaAccesoDatos.Migrations
 {
     [DbContext(typeof(ObligatorioContext))]
-    partial class ObligatorioContextModelSnapshot : ModelSnapshot
+    [Migration("20221012022907_mr-m")]
+    partial class mrm
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,6 +69,9 @@ namespace LogicaAccesoDatos.Migrations
                     b.Property<int?>("MatchResultId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MatchResultId1")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AwayId");
@@ -75,9 +80,11 @@ namespace LogicaAccesoDatos.Migrations
 
                     b.HasIndex("HomeId");
 
-                    b.HasIndex("MatchResultId")
+                    b.HasIndex("MatchResultId");
+
+                    b.HasIndex("MatchResultId1")
                         .IsUnique()
-                        .HasFilter("[MatchResultId] IS NOT NULL");
+                        .HasFilter("[MatchResultId1] IS NOT NULL");
 
                     b.ToTable("Match");
                 });
@@ -257,8 +264,12 @@ namespace LogicaAccesoDatos.Migrations
                         .IsRequired();
 
                     b.HasOne("LogicaNegocio.Entidades.MatchResult", "MatchResult")
+                        .WithMany()
+                        .HasForeignKey("MatchResultId");
+
+                    b.HasOne("LogicaNegocio.Entidades.MatchResult", null)
                         .WithOne("Match")
-                        .HasForeignKey("LogicaNegocio.Entidades.Match", "MatchResultId");
+                        .HasForeignKey("LogicaNegocio.Entidades.Match", "MatchResultId1");
 
                     b.OwnsOne("LogicaNegocio.VO.MatchDate", "MatchDate", b1 =>
                         {
