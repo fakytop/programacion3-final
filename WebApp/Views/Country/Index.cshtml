@@ -31,10 +31,16 @@
     <thead>
         <tr>
             <th>
+                Imagen
+            </th>
+            <th>
+                ID
+            </th>
+            <th>
                 Nombre
             </th>
             <th>
-                ISOAlpha3
+                ISO Alpha
             </th>
             <th>
                 Región
@@ -42,8 +48,12 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
+            <td>
+                <img class="img-thumbnail" src="~/img/countries/@item.Image" />
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
@@ -59,9 +69,9 @@
             <td>
                 @Html.ActionLink("Edit", "Update", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new {id=item.Id})
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
