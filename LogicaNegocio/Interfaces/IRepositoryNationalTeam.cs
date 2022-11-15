@@ -8,5 +8,6 @@ namespace LogicaNegocio.Interfaces
     public interface IRepositoryNationalTeam: IRepository<NationalTeam>
     {
         public NationalTeam FindById(int id);
+        public IEnumerable<NationalTeam> NationalTeamsByGroup(string groupName);
     }
 }

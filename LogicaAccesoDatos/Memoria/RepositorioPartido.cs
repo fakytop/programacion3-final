@@ -37,5 +37,10 @@ namespace LogicaAccesoDatos.Memoria
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<Match> ReadMatchesByGroup(string group)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -36,8 +36,11 @@ namespace ApiApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
        {
-            services.AddControllers();
-            
+            services.AddControllers()
+            .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+
             services.AddDbContext<ObligatorioContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("production")));
             
@@ -51,6 +54,7 @@ namespace ApiApp
             services.AddScoped<IRead<NationalTeam>, ReadAllNationalTeam>();
             services.AddScoped<IUpdate<NationalTeam>, UpdateNationalTeam>();
             services.AddScoped<IDelete<NationalTeam>, DeleteNationalTeam>();
+            services.AddScoped<IReadFilterNationalTeams<NationalTeam>, ReadAllNationalTeam>();
 
             services.AddScoped<IRepositoryGroupStage, RepositoryGroupStage>();
             services.AddScoped<ICreate<GroupStage>, CreateGroupStage>();
@@ -63,6 +67,7 @@ namespace ApiApp
             services.AddScoped<IRepositoryMatch, RepositoryMatch>();
             services.AddScoped<ICreate<Match>, CreateMatch>();
             services.AddScoped<IRead<Match>, ReadMatch>();
+            services.AddScoped<IReadFilterMatches<Match>, ReadMatch>();
 
             services.AddScoped<IRepositoryMatchResult, RepositoryMatchResult>();
             services.AddScoped<ICreate<MatchResult>, CreateMatchResult>();

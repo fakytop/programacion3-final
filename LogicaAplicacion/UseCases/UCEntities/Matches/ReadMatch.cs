@@ -8,7 +8,7 @@ using System.Text;
 
 namespace LogicaAplicacion.UseCases.UCEntities.Matches
 {
-    public class ReadMatch : IRead<Match>
+    public class ReadMatch : IRead<Match>, IReadFilterMatches<Match>
     {
         private IRepositoryMatch _repository;
 
@@ -25,6 +25,11 @@ namespace LogicaAplicacion.UseCases.UCEntities.Matches
         public IEnumerable<Match> ReadAll()
         {
             return _repository.All();
+        }
+
+        public IEnumerable<Match> ReadMatchesByGroup(string groupName)
+        {
+            return _repository.ReadMatchesByGroup(groupName);
         }
     }
 }

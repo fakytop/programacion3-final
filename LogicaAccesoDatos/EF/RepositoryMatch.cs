@@ -106,5 +106,23 @@ namespace LogicaAccesoDatos.EF
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<Match> ReadMatchesByGroup(string groupName)
+        {
+            IEnumerable<Match> matches = _db.Match
+                .Include(m => m.Home)
+                .Include(m => m.Away)
+                .Include(m => m.Group)
+                .Include(m => m.MatchResult)
+                .Where(m => m.Group.Group.Value == groupName)
+                .ToList();
+
+            //IEnumerable<NationalTeam> nts = _db.NationalTeams
+            //    .Include(nt => nt.GroupStage)
+            //    .Where(nt => nt.GroupStage.Group.Value == groupName);
+
+
+            return matches;
+        }
     }
 }

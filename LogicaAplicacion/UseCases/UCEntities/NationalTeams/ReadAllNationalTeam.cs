@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LogicaAplicacion.UseCases.UCEntities.NationalTeams
 {
-    public class ReadAllNationalTeam : IRead<NationalTeam>
+    public class ReadAllNationalTeam : IRead<NationalTeam>, IReadFilterNationalTeams<NationalTeam>
     {
         private IRepositoryNationalTeam _repo;
 
@@ -19,6 +19,11 @@ namespace LogicaAplicacion.UseCases.UCEntities.NationalTeams
         public NationalTeam FindById(int id)
         {
             return _repo.FindById(id);
+        }
+
+        public IEnumerable<NationalTeam> NationalTeamsByGroup(string groupName)
+        {
+            return _repo.NationalTeamsByGroup(groupName);
         }
 
         public IEnumerable<NationalTeam> ReadAll()

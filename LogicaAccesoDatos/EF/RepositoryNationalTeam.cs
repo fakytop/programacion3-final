@@ -141,5 +141,16 @@ namespace LogicaAccesoDatos.EF
             }
 
         }
+
+        public IEnumerable<NationalTeam> NationalTeamsByGroup(string groupName)
+        {
+            IEnumerable<NationalTeam> nts = _db.NationalTeams
+                .Include(nt => nt.GroupStage)
+                .Include(nt => nt.Country)
+                .Where(nt => nt.GroupStage.Group.Value == groupName)
+                .ToList();
+
+            return nts;
+        }
     }
 }
