@@ -36,7 +36,9 @@ namespace ApiApp.Mapper
             {
                 Id = m.Id,
                 HomeId = m.Home.Id,
+                HomeCountry = m.Home.Country.Name.Value,
                 AwayId = m.Away.Id,
+                AwayCountry = m.Away.Country.Name.Value,
                 MatchResultId = m.MatchResultId,
                 MatchResultDto = MatchResultMapper.FromMatchResult(m.MatchResult),
                 MatchDate = m.MatchDate.Value

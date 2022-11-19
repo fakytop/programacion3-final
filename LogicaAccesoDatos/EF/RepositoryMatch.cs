@@ -63,7 +63,9 @@ namespace LogicaAccesoDatos.EF
             {
                 return _db.Match
                     .Include(th => th.Home)
+                    .Include(th => th.Home.Country)
                     .Include(ta => ta.Away)
+                    .Include(ta => ta.Away.Country)
                     .Include(m => m.MatchResult)
                     .Include(m => m.Group)
                     .OrderBy(d => d.MatchDate.Value);
