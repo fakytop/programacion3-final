@@ -81,5 +81,36 @@ namespace ApiApp.Controllers
 
             return Ok(MatchMapper.FromMatches(matches));
         }
+        [HttpGet("byCountryName/{countryName}")]
+        public IActionResult GetMatchesByNationalTeamName(string countryName)
+        {
+            IEnumerable<Match> matchesByCountryName = _ucReadMatch.ReadAll()
+                .Where(c => c.Home.Country.Name.Value.ToUpper() == countryName.ToUpper() || c.Away.Country.Name.Value.ToUpper() == countryName.ToUpper());
+
+            return Ok(MatchMapper.FromMatches(matchesByCountryName));
+
+
+        }
+
+        [HttpGet("byCountryISO/{countryISO}")]
+        public IActionResult GetMatchesByCountryISO(string countryISO)
+        {
+            IEnumerable<Match> matchesByISO = _ucReadMatch.ReadAll()
+                .Where(c => c.Home.Country.IsoAlfa3.Value.ToUpper() == countryISO.ToUpper() || c.Away.Country.IsoAlfa3.Value.ToUpper() == countryISO.ToUpper());
+
+            return Ok(MatchMapper.FromMatches(matchesByISO));
+
+        }
+
+        [HttpGet("FromDate/{fromDate}/ToDate/{toDate}")]
+        public IActionResult GetMatchesBetweenDates(DateTime fromDate, DateTime toDate)
+        {
+            DateTime toDatePlus = new DateTime(toDate.Year,toDate.Month,toDate.Day + 1);
+            IEnumerable<Match> matchesBtwDates = _ucReadMatch.ReadAll()
+                .Where(d => d.MatchDate.Value >= fromDate && d.MatchDate.Value <= toDatePlus)
+                .OrderBy(d => d.MatchDate.Value);
+
+            return Ok(MatchMapper.FromMatches(matchesBtwDates));
+        }
     }
 }
