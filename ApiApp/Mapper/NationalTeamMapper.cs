@@ -40,6 +40,7 @@ namespace ApiApp.Mapper
             return new NationalTeamDto
             {
                 Id = nt.Id,
+                idCountry = nt.Country.Id, 
                 Country = CountryMapper.FromCountry(nt.Country),
                 Name = nt.Name.Value,
                 Phone = nt.Phone.Value,

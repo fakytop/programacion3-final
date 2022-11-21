@@ -95,7 +95,7 @@ namespace ApiApp.Controllers
             try
             {
                 NationalTeam nt = NationalTeamMapper.ToNationalTeam(ntDto);
-                nt.Country = _ucCountry.FindById(ntDto.Country.Id);
+                nt.Country = _ucCountry.FindById(ntDto.idCountry);
                 _ucUpdateNationalTeam.Update(nt);
 
                 ntDto.Country = CountryMapper.FromCountry(nt.Country);

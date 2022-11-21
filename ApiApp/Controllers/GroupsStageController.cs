@@ -243,9 +243,12 @@ namespace ApiApp.Controllers
                                 directRedCards = natFinal.Sum(x => x.directRedCards)
                             };
             var resultadoOrdenado = resultDto.OrderByDescending(x => x.pts).ThenByDescending(x => x.goalsScored);
-                          
 
 
+            if (resultadoOrdenado.Count() == 0)
+            {
+                return BadRequest("No data yet.");
+            }
 
             return Ok(resultadoOrdenado);
         }
