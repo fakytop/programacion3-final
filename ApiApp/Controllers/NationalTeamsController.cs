@@ -69,7 +69,7 @@ namespace ApiApp.Controllers
                     return BadRequest("Server did not receive any data.");
                 }
                 NationalTeam nationalTeam = NationalTeamMapper.ToNationalTeam(ntDto);
-                nationalTeam.Country = _ucCountry.FindById(ntDto.Country.Id);
+                nationalTeam.Country = _ucCountry.FindById(ntDto.idCountry);
                 _ucCreateNationalTeam.Create(nationalTeam);
 
                 ntDto.Country = CountryMapper.FromCountry(nationalTeam.Country);
