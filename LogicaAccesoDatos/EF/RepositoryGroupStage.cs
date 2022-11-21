@@ -26,6 +26,10 @@ namespace LogicaAccesoDatos.EF
             {
                 throw new DomainException("There already 8 groups registered.");
             }
+            if(gs.FirstOrDefault(g => g.Group.Value == group.Group.Value) != null)
+            {
+                throw new DomainException("A group with this name already exists.");
+            }
             _db.Add(group);
             group.Validate();
             _db.SaveChanges();
@@ -91,6 +95,10 @@ namespace LogicaAccesoDatos.EF
             if (gs == null)
             {
                 throw new Exception("Group stage does not exist.");
+            }
+            if (All().FirstOrDefault(g => g.Group.Value == obj.Group.Value) != null)
+            {
+                throw new DomainException("A group with this name already exists.");
             }
 
             try
