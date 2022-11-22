@@ -18,6 +18,10 @@ namespace LogicaNegocio.VO
 
         public void validate()
         {
+            if (Value == null)
+            {
+                throw new InvalidCodeException("Invalid code: value cannot be null.");
+            }
             foreach (var c in Value)
             {
                 if (!validCodes.Contains(c))
