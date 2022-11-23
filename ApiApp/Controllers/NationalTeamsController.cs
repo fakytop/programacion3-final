@@ -41,6 +41,15 @@ namespace ApiApp.Controllers
         {
             return Ok(NationalTeamMapper.FromNationalTeams(_ucReadNationalTeam.ReadAll()));
         }
+        [Route("withoutGroup")]
+        public IActionResult GetWithoutGroup()
+        {
+            IEnumerable<NationalTeam> nts = _ucReadNationalTeam.ReadAll()
+                .Where(nt => nt.GroupStage == null);
+
+            return Ok(NationalTeamMapper.FromNationalTeams(nts));
+
+        }
 
         [HttpGet("{Id:int}")]
         public IActionResult Get(int id)

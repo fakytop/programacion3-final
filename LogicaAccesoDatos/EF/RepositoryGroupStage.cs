@@ -96,10 +96,10 @@ namespace LogicaAccesoDatos.EF
             {
                 throw new Exception("Group stage does not exist.");
             }
-            if (All().FirstOrDefault(g => g.Group.Value == obj.Group.Value) != null)
-            {
-                throw new DomainException("A group with this name already exists.");
-            }
+            //if (All().FirstOrDefault(g => g.Group.Value == obj.Group.Value) != null)
+            //{
+            //    throw new DomainException("A group with this name already exists.");
+            //}
 
             try
             {

@@ -23,6 +23,7 @@ namespace ApiApp.Controllers
 
         private IReadFilterNationalTeams<NationalTeam> _ucNationalTeamFilter;
         private IReadFilterMatches<Match> _ucMatchFilter;
+        private IRead<Match> _ucReadMatches;
 
         private IRead<NationalTeam> _ucReadNationalTeam;
         private IAssign<GroupStage> _ucAssign;
@@ -35,7 +36,8 @@ namespace ApiApp.Controllers
             IUpdate<GroupStage> ucUpdateGroupStage,
             IDelete<GroupStage> ucDeleteGroupStage,
             IReadFilterNationalTeams<NationalTeam> ucNationalTeamFilter,
-            IReadFilterMatches<Match> ucMatchFilter            
+            IReadFilterMatches<Match> ucMatchFilter,
+            IRead<Match> ucReadMatches
             )
         {
             _ucReadGroupStage = ucReadGroupStage;
@@ -46,6 +48,7 @@ namespace ApiApp.Controllers
             _ucDeleteGroupStage = ucDeleteGroupStage;
             _ucNationalTeamFilter = ucNationalTeamFilter;
             _ucMatchFilter = ucMatchFilter;
+            _ucReadMatches = ucReadMatches;
         }
 
         public IActionResult GetAll()
@@ -128,8 +131,15 @@ namespace ApiApp.Controllers
         [Route("group/{groupID}/nationalteam/{nationalTeamID}")]
         public IActionResult Assign(int groupID, int nationalTeamID)
         {
+            
             try
             {
+                Match m = _ucReadMatches.ReadAll()
+                .FirstOrDefault(m => m.HomeId == nationalTeamID || m.AwayId == nationalTeamID);
+                if(m != null)
+                {
+                    throw new DomainException("Can't be re-assigned, there are already registered matches.");
+                }
                 GroupStage group = _ucReadGroupStage.FindById(groupID);
                 NationalTeam national = _ucReadNationalTeam.FindById(nationalTeamID);
                 _ucAssign.AssignNationalTeam(group, national);
