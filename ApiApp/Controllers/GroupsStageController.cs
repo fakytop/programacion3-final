@@ -168,7 +168,11 @@ namespace ApiApp.Controllers
                          on nt.Id equals m.HomeId
                          select new
                          {
-                             country = nt.Country.Name.Value,
+                             country = new
+                             {
+                                 name = nt.Country.Name.Value,
+                                 image = nt.Country.Image
+                             },
                              pts = m.MatchResult == null ? 0 : m.MatchResult.PointsHome.Value ,
                              goalsScored = m.MatchResult == null ? 0 : m.MatchResult.GoalsH.Value,
                              goalsAgainst = m.MatchResult == null ? 0 : m.MatchResult.GoalsA.Value,
@@ -195,7 +199,11 @@ namespace ApiApp.Controllers
                                   on ntAway.Id equals mAway.AwayId
                                   select new
                                   {
-                                      country = ntAway.Country.Name.Value,
+                                      country = new 
+                                      { 
+                                         name = ntAway.Country.Name.Value,
+                                          image = ntAway.Country.Image
+                                      },
                                       pts = mAway.MatchResult == null ? 0 : mAway.MatchResult.PointsAway.Value,
                                       goalsScored = mAway.MatchResult == null ? 0 : mAway.MatchResult.GoalsA.Value,
                                       goalsAgainst = mAway.MatchResult == null ? 0 : mAway.MatchResult.GoalsH.Value,
