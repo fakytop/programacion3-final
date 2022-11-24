@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace ApiApp.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class MatchController : ControllerBase
@@ -56,7 +57,7 @@ namespace ApiApp.Controllers
                 return StatusCode(500, "Something went wrong, please try again later.");
             }
         }
-
+        [HttpGet]
         public IActionResult GetAllMatches()
         {
             IEnumerable<Match> allMatches = _ucReadMatch.ReadAll();

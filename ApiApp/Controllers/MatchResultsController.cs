@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace ApiApp.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class MatchResultsController : ControllerBase

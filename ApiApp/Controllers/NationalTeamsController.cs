@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace ApiApp.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class NationalTeamsController : ControllerBase
@@ -36,11 +37,12 @@ namespace ApiApp.Controllers
             _ucDeleteNationalTeam = deleteNT;
             _ucCountry = ucCountry;
         }
-
+        [HttpGet]
         public IActionResult GetAll()
         {
             return Ok(NationalTeamMapper.FromNationalTeams(_ucReadNationalTeam.ReadAll()));
         }
+        [HttpGet]
         [Route("withoutGroup")]
         public IActionResult GetWithoutGroup()
         {

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace ApiApp.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class CountriesController : ControllerBase
@@ -28,6 +29,7 @@ namespace ApiApp.Controllers
             _ucReadCountry = ucReadCountries;
             _environment = environment;
         }
+        [HttpGet]
         public IActionResult GetAll()
         {
             return Ok(CountryMapper.FromCountries(_ucReadCountry.ReadAll()));

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace ApiApp.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class GroupsStageController : ControllerBase
@@ -50,7 +51,7 @@ namespace ApiApp.Controllers
             _ucMatchFilter = ucMatchFilter;
             _ucReadMatches = ucReadMatches;
         }
-
+        [HttpGet]
         public IActionResult GetAll()
         {
             return Ok(GroupStageMapper.FromGroupsStage(_ucReadGroupStage.ReadAll()));
